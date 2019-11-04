@@ -1,6 +1,6 @@
 ---
 
-layout: .idea
+layout: category
 
 title: Python
 
