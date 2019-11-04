@@ -4,4 +4,3 @@ title: Tags
 permalink: /tags/
 ---
 
-#Python
