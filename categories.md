@@ -1,5 +1,5 @@
 ---
 layout: page
-title: Categories
+title: Archive
 permalink: /categories/
 ---
