@@ -4,6 +4,12 @@ title: Categories
 permalink: /categories/
 ---
 
+{% for post in site.categories[page.category] %}
+  <a href="{{ post.url | absolute_url }}">
+    {{ post.title }}
+  </a>
+{% endfor %}
+
 <div class="post-list">
   {% assign category = page.title %}
   {% for post in site.categories[category] %} <!-- 카테고리 조건 -->
