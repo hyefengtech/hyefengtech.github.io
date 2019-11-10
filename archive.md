@@ -1,5 +1,7 @@
 ---
 layout: page
+title: Archives
+permalink: /archive/
 ---
 {% for post in site.posts %}
     {% capture month %}{{ post.date | date: '%m%Y' }}{% endcapture %}
