@@ -41,6 +41,19 @@ google_analytics:
 
 search: true
 
+collections:
+  tags:
+    output: true
+    permalink: /tags/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: tags
+    values:
+      layout: tag
+
+
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
 url: "http://hyefengtech.github.io"
