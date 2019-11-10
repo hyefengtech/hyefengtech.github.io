@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Github Blog - 지킬(Jekyll)로 깃허브(Github) 블로그 개설하기
+title: "&#91;Github Blog&#93; 지킬(Jekyll)로 깃허브(Github) 블로그 개설하기"
 categories: [Development Environment]
 ---
 
