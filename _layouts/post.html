@@ -8,7 +8,9 @@ layout: default
   <div class="entry">
 {% if page.tags %}
   {% for tag in page.tags %}
-    <span class="tag">{{ tag }}</span>
+    {% if site.tags.tags contains tag %}
+      <span class="tag">{{ tag }}</span>
+    {% endif %}
   {% endfor %}
 {% endif %}
     {{ content }}
