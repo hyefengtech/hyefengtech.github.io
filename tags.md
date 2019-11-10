@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Tags
-permalink: /tags/
+permalink: /tags#{{ tag }}
 ---
 
 {% if site.posts.size == 0 %}
