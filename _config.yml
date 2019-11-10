@@ -41,6 +41,20 @@ google_analytics:
 
 search: true
 
+navigation:
+  - name: Categories
+    url: /
+  - name: About
+    url: /about
+  - name: Archive
+    url: /archive
+  - name: Tags
+    url: /tags
+
+# Pagination
+paginate: 5
+
+
 collections:
   tags:
     output: true
