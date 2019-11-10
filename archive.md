@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Archives
-permalink: /archive/
+permalink: /archive.md/
 ---
 
 {% for post in site.posts %}
