@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "&#91;TIL&#93; 2020-01-06"
-categories: [TIL, Digital Humanitas]
+title: "&#91;Reviewlog&#93; 디지털인문학이란?"
+categories: [Digital Humanitas]
 tags: 
-- TIL
+- Digital Humanitas
 ---
 
-Reviewlog 디지털인문학이란? 
+## 개념
 
+> 디지털 인문학이란 디지털로 표현하고 디지털로 소통하는 오늘날에 인문지식이 더욱 의미 있게 탐구되고 가치 있게 활용되도록 하려는 노력이다.
 
 
 
