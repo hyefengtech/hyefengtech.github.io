@@ -52,17 +52,18 @@ a.index(3) // 3은 리스트 a의 세 번째(a[2])요소 이므로 2를 리턴
 2. 파이썬에서 문자열 함수 중 format()이 있다.
 ~~~
 
->>> value = 4 * 20
->>> 'The value is {value}.'.format(value=value)
+value = 4 * 20
+'The value is {value}.'.format(value=value)
 'The value is 80.'
 
 Even in its simplest form there is a bit of boilerplate, and the value that's inserted into the placeholder is sometimes far removed from where the placeholder is situated:
 
->>> 'The value is {}.'.format(value)
+'The value is {}.'.format(value)
 'The value is 80.'
+
 With an f-string, this becomes:
 
->>> f'The value is {value}.'
+f'The value is {value}.'
 'The value is 80.'
 
 ~~~
