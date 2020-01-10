@@ -1,6 +1,14 @@
 ---
+layout: post
+title: "&#91;TIL&#93; 2020-01-10 DailyAlgo"
+categories: [TIL, Algorithm]
+tags: 
+- TIL
+- Algorithm
 ---
 
+# level 1. 서울에서 김서방 찾기
+> 출처 - 프로그래머스
 
 ## 문제 설명
 
