@@ -102,6 +102,8 @@ Is but a dream within a dream.
 <br>
 결론은 한글, 한자 인식 OCR 스캔기술을 개발해서 월드플레이의 경험을 만들때에 활용할 수 있도록 노력해야지.
 
+
 <br>
 p.s.
-파이썬용 pytesseract 라이브러리 사용법에 대한 내용은 https://github.com/madmaze/pytesseract 여기에 더 자세하게 정리되어 있다.
+<br>파이썬용 pytesseract 라이브러리 사용법에 대한 내용은 https://github.com/madmaze/pytesseract 여기에 더 자세하게 정리되어 있다.
+<br>https://github.com/tesseract-ocr/
