@@ -23,6 +23,6 @@ tags:
 (base) baghyeliui-MacBookPro:Desktop spica$ tesseract EB87iJRUYAE1_jE.png stdout -l kor
 ~~~
 
-음, 이렇게 우선 글을 쓰지만 터미널에서 tesseract를 사용하려면 " tesseract 파일명 stdout -l 언어 " 이런 구조의 코드를 쳐야하는데 아직 stdout 이 왜 필요한 것인지 잘 모르겠다. <br> 어디서 본 것에 따르면 아웃풋할 파일이라는데 음.... 그게 대체 무슨 소리인지 뜻을 알 수가 없고 일단 저렇게 치면 터미널에서 OCR 이 돌아간다.
+음, 이렇게 우선 글을 쓰지만 터미널에서 tesseract를 사용하려면 " tesseract 파일명 stdout -l 언어 " 이런 구조의 코드를 쳐야하는데 아직 stdout 이 왜 필요한 것인지 잘 모르겠다. <br> 어디서 본 것에 따르면 아웃풋할 파일이라는데 음.... 그게 대체 무슨 소리인지 뜻을 알 수가 없고 일단 저렇게 치면 터미널에서 OCR 이 돌아간다. ~~이렇게 야매개발자라 할말이 없다. 이유를 
 
 덧붙이자면 
