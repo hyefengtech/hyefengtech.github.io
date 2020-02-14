@@ -104,4 +104,4 @@ Is but a dream within a dream.
 
 <br>
 p.s.
-파이썬용 pytesseract 라이브러리 사용법에 대한 내용은 [https://github.com/madmaze/pytesseract] 여기에 더 자세하게 정리되어 있다.
+파이썬용 pytesseract 라이브러리 사용법에 대한 내용은 https://github.com/madmaze/pytesseract 여기에 더 자세하게 정리되어 있다.
