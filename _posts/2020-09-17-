@@ -1,0 +1,86 @@
+---
+---
+
+
+~~~
+
+  <body style="background-color:#E8C585">
+    <div id="game-title">
+      <h1>근정전 : 잠들어 있는 사방신을 깨워라</h1>
+    </div>
+
+    <br>
+    <br>
+
+  <div class="storyquest">
+      <p> "사방신의 봉인을 푼다면 잠들어 있는 그들의 기운을 깨울 수 있을 거야." <br><br>
+
+       <br>
+      </p>
+
+  <div class="storyquest_answercorrect">
+    <img src="connect5hang.jpeg" alt="오행을 연결하라 미션카드"><br><br>
+    <p> 봉인을 풀어볼까? <br><br>
+
+      <div class="answer">
+        <label style="font-size: 1.2em;"><input type="checkbox" class="check" value="지">지</label><br><br>
+        <label style="font-size: 1.2em; margin-right: 10px;"><input type="checkbox" class="check" value="의">의</label>
+        <label style="font-size: 1.2em; margin-bottom: 30px;"><input type="checkbox" class="check" value="신">신</label>
+        <label style="font-size: 1.2em; margin-left: 10px;"><input type="checkbox" class="check" value="인">인</label><br>
+        <label style="font-size: 1.2em;"><input type="checkbox" class="check" value="예">예</label><br><br>
+
+          <input type="text" name="connect5" placeholder="순서대로 연결하세요" id="connect5"> <br><br>
+          <button type="button" class="btn btn-primary" name="button" value="오행연결!" onclick="buttonConnect();">오행 연결!</button>
+      </div>
+
+    <script>
+    $(document).ready(function () {
+        $(".check").click(function() {
+            if ( $(this).is(":checked") ) {
+                $("#connect5").val($("#connect5").val()+($("#connect5").val().length?","+$(this).val():$(this).val()));
+            } else {
+                var tmp = $("#connect5").val().split(",");
+                for (var i in tmp) if ( tmp[i]==$(this).val() ) tmp.splice(i, 1);
+                $("#connect5").val(tmp.join(","));
+            }
+        });
+    });
+
+    function buttonConnect () {
+      if (document.getElementById("connect5").value === "인,예,신,의,지") {
+        window.location.href="metroJoseon_scene51.html";//현재페이지의 주소를 해당페이지로 바꿉니다.
+      } else {
+        location.href="metroJoseon_scene50.html";
+      }
+    };
+    
+  </script>
+  ~~~~~~
+  
+  ~~~~~
+        <!--- 체크박스를 사용하기 이전에 채택했던 텍스트 수동입력 방식
+        <form name=form_id>
+          <input name=textbox_id type="text" id="answer" placeholder="입력하세요." autocomplete="off">
+          <br>
+          <br>
+        </form>
+        <button type="button" class="btn btn-primary" name="button" onclick="To_Noname();" value="이동">입력</button>
+        <br>
+        <br>
+      </div>
+      </body>
+
+      <script language=javascript>
+      function To_Noname(){
+      if(document.form_id.textbox_id.value === "우하상좌상"){
+      window.location.href="metroJoseon_scene51.html";//현재페이지의 주소를 해당페이지로 바꿉니다.
+      }else{
+      location.href="noname3.html";
+      }
+      };
+      </script>
+---->
+
+  </body>
+
+~~~
