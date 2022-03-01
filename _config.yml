@@ -57,7 +57,7 @@ paginate: 5
 
 collections:
   about:
-   output: false
+   output: true
    permalink: /about/:path/
   archive:
    output: true
