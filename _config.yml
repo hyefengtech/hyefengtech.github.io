@@ -9,7 +9,7 @@ name: 혜풍화창 Tech n Devlog
 description: Software Artist, Fullstack Developer
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: "https://github.com/hyefengtech/hyefengtech.github.io/blob/beb3d4659d6388d95a1835deb16cf5d9ab9b8895/images/IMG_4222.jpg"
+avatar: "./images/IMG_4222.jpg"
 
 #
 # Flags below are optional
