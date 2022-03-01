@@ -9,7 +9,7 @@ avatar: https://github.com/hyefengtech/hyefengtech.github.io/blob/beb3d4659d6388
   <h2>No post found</h2>
 {% endif %}
 
-<ul class="archive">
+<ul class="archive" style="list-style:none;">
   {% for post in site.posts %}
     {% unless post.next %}
       <h2>{{ post.date | date: '%Y' }}</h2>
