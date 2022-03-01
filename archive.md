@@ -2,7 +2,6 @@
 layout: page
 title: Archive
 permalink: /archive/
-avatar: https://github.com/hyefengtech/hyefengtech.github.io/blob/beb3d4659d6388d95a1835deb16cf5d9ab9b8895/images/IMG_4222.jpg
 ---
 
 {% if site.posts.size == 0 %}
