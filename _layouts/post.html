@@ -9,6 +9,7 @@ layout: default
     <span class="date">
       {{ page.date | date: "%Y-%m-%d" }}
     </span>
+
     
     <ul class="tag">
       {% for tag in page.tags %}
@@ -19,6 +20,15 @@ layout: default
       </li>
       {% endfor %}
     </ul>
+    
+    {% if page.tags %}
+  {% for tag in page.tags %}
+    <span class="tag">{{ tag }}</span>
+  {% endfor %}
+{% endif %}
+    
+    
+    
   </div>
 
   <div class="entry">
