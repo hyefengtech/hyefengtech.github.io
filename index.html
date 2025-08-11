@@ -17,5 +17,15 @@ layout: default
     
 </ul>
 
+<button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 글</button>
+<script src="{{ '/random.js' | relative_url }}"></script>
+<script>
+document.getElementById('random-post-btn').addEventListener('click', function(){
+  var url = randomPosts[Math.floor(Math.random()*randomPosts.length)];
+  window.location.href = url;
+});
+</script>
+
+
 </header>
     
