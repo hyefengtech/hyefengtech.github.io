@@ -17,27 +17,5 @@
     </div>
 
     {% include analytics.html %}
-
-{% raw %}{% if page.layout == "category" %}{% endraw %}
-<a class="fab-home" href="{{ '/' | relative_url }}" aria-label="categories로">⌂</a>
-<style>
-.fab-home{
-  position:fixed; right:16px; bottom:16px;
-  display:inline-flex; align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:999px;
-  background:#111; color:#fff; text-decoration:none;
-  box-shadow:0 6px 18px rgba(0,0,0,.18); font-size:20px; line-height:1;
-  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
-  z-index:9999;
-}
-.fab-home:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.22); background:#000; }
-@media (prefers-color-scheme: light){
-  .fab-home{ background:#111; color:#fff; }
-}
-@media (prefers-color-scheme: dark){
-  .fab-home{ background:#e5e7eb; color:#111; }
-}
-</style>
-{% raw %}{% endif %}{% endraw %}
   </body>
 </html>
