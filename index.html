@@ -3,7 +3,7 @@ layout: default
 ---
 
 <style>
-/* 카테고리는 기존처럼 세로 목록으로 표시합니다. */
+/* 카테고리: 세로형 텍스트 목록 유지 */
 .site-category ul {
   list-style: none;
   margin: 0;
@@ -15,7 +15,7 @@ layout: default
 }
 .site-category .category-link {
   display: block;
-  padding: 0.9rem 0.25rem;
+  padding: .9rem .25rem;
   color: inherit;
   background: transparent;
   border: 0;
@@ -29,15 +29,7 @@ layout: default
 .site-category .category-link:focus-visible {
   color: #2864a0;
   padding-left: .6rem;
-  background: transparent;
-  box-shadow: none;
-  transform: none;
   text-decoration: none;
-}
-.site-category .category-link:focus-visible,
-.site-category #random-post-btn:focus-visible {
-  outline: 2px solid #729ed0;
-  outline-offset: 2px;
 }
 .site-category .category-link.active {
   color: #2864a0;
@@ -55,12 +47,71 @@ layout: default
   cursor: pointer;
   text-align: left;
 }
-.site-category #random-post-btn:hover {
-  color: #2864a0;
-  background: transparent;
+.site-category #random-post-btn:hover { color: #2864a0; }
+
+/* 최신 글에만 카드 스타일 적용 */
+.home-latest {
+  margin-top: 2.5rem;
+}
+.home-latest__heading {
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+.home-latest__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.home-latest__grid > li {
+  min-width: 0;
+  margin: 0;
+}
+.home-latest__card {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid #e3e8ee;
+  border-radius: 14px;
+  background: #fff;
+  color: #243247;
+  text-decoration: none;
+  box-shadow: 0 3px 12px rgba(25, 48, 76, .035);
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.home-latest__card:hover,
+.home-latest__card:focus-visible {
+  border-color: #a7bedb;
+  box-shadow: 0 8px 24px rgba(25, 48, 76, .09);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.home-latest__title {
+  margin: 0;
+  color: inherit;
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.home-latest__date {
+  margin-top: auto;
+  color: #718096;
+  font-size: .82rem;
+}
+@media (max-width: 580px) {
+  .home-latest__grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .site-category .category-link { transition: none; }
+  .site-category .category-link,
+  .home-latest__card { transition: none; }
+  .home-latest__card:hover { transform: none; }
 }
 </style>
 
@@ -88,3 +139,19 @@ layout: default
   });
   </script>
 </header>
+
+<section class="home-latest" aria-labelledby="home-latest-heading">
+  <h2 id="home-latest-heading" class="home-latest__heading">Latest Posts</h2>
+  <ul class="home-latest__grid">
+    {% for post in site.posts limit:5 %}
+      <li>
+        <a class="home-latest__card" href="{{ post.url | relative_url }}">
+          <h3 class="home-latest__title">{{ post.title | escape }}</h3>
+          <time class="home-latest__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+            {{ post.date | date: '%Y.%m.%d' }}
+          </time>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
