@@ -3,42 +3,35 @@ layout: default
 ---
 
 <style>
-/* 홈페이지 한정: 부드러운 파스텔 빛과 자유로운 리듬 */
-body {
-  background: radial-gradient(ellipse 52rem 36rem at 92% 8%, rgba(219,207,250,.42), transparent 72%),
-              radial-gradient(ellipse 42rem 35rem at 4% 58%, rgba(198,238,224,.36), transparent 72%),
-              radial-gradient(ellipse 36rem 28rem at 95% 94%, rgba(255,211,219,.30), transparent 72%),
-              #faf9fd;
-  color: #292637;
-}
+/* 홈페이지 전용 스타일: 공통 색상과 헤더는 style.scss에서 관리 */
 .site-category { margin: 1.6rem 0 0; }
 .site-category ul { list-style:none; margin:0; padding:0; }
 .site-category li { margin:0; padding:.24rem 0; }
 .site-category .category-link {
   display:inline-flex; align-items:baseline; gap:.48rem; padding:.08rem 0;
   background:none; border:0; border-radius:0; box-shadow:none;
-  color:#302d40; text-decoration:none; line-height:1.5;
+  color:#302e3c; text-decoration:none; line-height:1.5;
   transition:color .2s ease, transform .2s ease;
 }
 .site-category .category-link:hover,
 .site-category .category-link:focus-visible {
-  color:#8064c5; transform:translateX(5px); text-decoration:none;
+  color:#7965bd; transform:translateX(5px); text-decoration:none;
 }
-.site-category .category-link.active { color:#8064c5; font-weight:700; }
-.site-category .category-count { color:#a19aac; font-size:.8em; font-weight:400; }
+.site-category .category-link.active { color:#7965bd; font-weight:700; }
+.site-category .category-count { color:#91899e; font-size:.8em; font-weight:400; }
 .site-category #random-post-btn {
   display:inline-block; margin:1.2rem 0 0; padding:.15rem 0;
   background:none; border:0; border-radius:0; box-shadow:none;
-  color:#8064c5; font:inherit; cursor:pointer; text-align:left;
+  color:#7965bd; font:inherit; cursor:pointer; text-align:left;
   transition:letter-spacing .2s ease, color .2s ease;
 }
-.site-category #random-post-btn:hover { color:#56439a; letter-spacing:.02em; }
+.site-category #random-post-btn:hover { color:#554198; letter-spacing:.02em; }
 .home-latest { margin-top:4rem; }
 .home-latest__heading {
-  margin:0 0 1.45rem; color:#302d40; font-size:1.55rem;
+  margin:0 0 1.45rem; color:#302e3c; font-size:1.55rem;
   font-weight:700; letter-spacing:-.045em;
 }
-/* 그리드는 배치만 담당: 카드 박스 대신 열린 텍스트 컴포지션 */
+/* 박스형 카드를 만들지 않고, 글 자체가 콘텐츠가 되도록 */
 .home-latest__grid {
   display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
   gap:2.1rem 2.6rem; list-style:none; margin:0; padding:0;
@@ -48,28 +41,28 @@ body {
 .home-latest__card {
   position:relative; display:flex; flex-direction:column; align-items:flex-start;
   gap:.65rem; min-height:11rem; padding:1.05rem .2rem 1.15rem;
-  background:transparent; border:0; border-top:1px solid #dcd5eb;
-  border-radius:0; box-shadow:none; color:#302d40; text-decoration:none;
+  background:transparent; border:0; border-top:1px solid #e8e3f0;
+  border-radius:0; box-shadow:none; color:#302e3c; text-decoration:none;
   transition:border-color .2s ease, transform .2s ease;
 }
 .home-latest__card:hover, .home-latest__card:focus-visible {
-  border-top-color:#9a80d4; transform:translateY(-3px); text-decoration:none;
+  border-top-color:#a69bd4; transform:translateY(-3px); text-decoration:none;
 }
 .home-latest__title {
   margin:0; font-size:1.15rem; line-height:1.48; font-weight:650;
-  letter-spacing:-.03em; color:#302d40; overflow-wrap:anywhere;
+  letter-spacing:-.03em; color:#302e3c; overflow-wrap:anywhere;
 }
-.home-latest__date { order:-1; color:#938aa3; font-size:.78rem; letter-spacing:.035em; }
+.home-latest__date { order:-1; color:#79758b; font-size:.78rem; letter-spacing:.035em; }
 .home-latest__excerpt {
-  margin:0; color:#706b7e; font-size:.9rem; line-height:1.7;
+  margin:0; color:#716b7c; font-size:.9rem; line-height:1.7;
   display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3;
   overflow:hidden; overflow-wrap:anywhere;
 }
 .home-latest__more {
-  margin-top:auto; padding-top:.45rem; color:#8468bc;
+  margin-top:auto; padding-top:.45rem; color:#7965bd;
   font-size:.86rem; font-weight:600;
 }
-.home-latest__card:hover .home-latest__more { color:#59419d; }
+.home-latest__card:hover .home-latest__more { color:#554198; }
 @media(max-width:580px) {
   .home-latest { margin-top:3rem; }
   .home-latest__grid { grid-template-columns:1fr; gap:1.05rem; }
@@ -128,4 +121,5 @@ body {
     {% endfor %}
   </ul>
 </section>
+
 
