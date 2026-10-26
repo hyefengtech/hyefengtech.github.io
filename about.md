@@ -29,8 +29,8 @@ permalink: /about/
 </style>
 
 <div class="about-creative">
-  <p class="eyebrow">안녕하세요 혜풍입니다.</p>
-  <h1 class="intro">코드를 쓰고<br>세계를 만들고<br><em>그 사이를 탐색합니다.</em></h1>
+  <p class="eyebrow">안녕하세요 혜풍입니다</p>
+  <h1 class="intro">코드를 쓰고<br>세계를 만들고<br><em>그 사이를 탐색합니다</em></h1>
   <p class="lead">소프트웨어 아티스트이자 풀스택 개발자입니다. 기술을 기능을 구현하는 수단이자 새로운 경험을 표현하는 재료로 바라봅니다. 인터랙티브 콘텐츠를 만들고 개발하며 떠오른 생각과 실험을 이곳에 기록합니다.</p>
 
   <section aria-labelledby="about-projects">
