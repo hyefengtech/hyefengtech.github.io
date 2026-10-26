@@ -1,7 +1,7 @@
 # --- 기본 메타 ---
 name: 혜풍화창 Tech n Devlog
 description: Software Artist, Fullstack Developer
-avatar: "./images/IMG_4222.jpg"
+avatar: "./images/avatar.png"
 
 footer-links:
   github: "hyefengtech"   # 아이콘은 username만으로도 충분
