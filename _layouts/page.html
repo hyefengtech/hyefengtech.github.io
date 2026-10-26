@@ -2,12 +2,91 @@
 layout: default
 ---
 
-<article class="page">
+<style>
+/* 공통 일반 페이지: About 및 layout: page를 사용하는 페이지 */
+.page {
+  --page-ink: #302e3c;
+  --page-muted: #777287;
+  --page-accent: #7965bd;
+  --page-rule: #e8e3f0;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 0 3.5rem;
+  color: var(--page-ink);
+}
+.page__header { margin: 0 0 2.3rem; }
+.page__title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.15rem);
+  font-weight: 650;
+  letter-spacing: -.055em;
+  line-height: 1.2;
+  color: var(--page-ink);
+}
+.page__rule {
+  width: 3.25rem;
+  height: 2px;
+  margin-top: 1.2rem;
+  background: #b9a7e9;
+}
+.page .entry { font-size: 1rem; line-height: 1.85; overflow-wrap: anywhere; }
+.page .entry > :first-child { margin-top: 0; }
+.page .entry h1,
+.page .entry h2,
+.page .entry h3,
+.page .entry h4 {
+  color: var(--page-ink);
+  line-height: 1.35;
+  letter-spacing: -.035em;
+}
+.page .entry h1 { font-size: 1.65rem; margin: 2.8rem 0 .85rem; }
+.page .entry h2 { font-size: 1.35rem; margin: 2.4rem 0 .75rem; }
+.page .entry h3 { font-size: 1.13rem; margin: 1.8rem 0 .65rem; }
+.page .entry p { margin: .8rem 0 1.2rem; }
+.page .entry a {
+  color: var(--page-accent);
+  text-decoration: underline;
+  text-decoration-color: #c8b9ec;
+  text-underline-offset: .22em;
+  transition: text-decoration-color .18s ease, color .18s ease;
+}
+.page .entry a:hover { color: #59429f; text-decoration-color: currentColor; }
+.page .entry a:focus-visible { outline: 2px solid var(--page-accent); outline-offset: 3px; }
+.page .entry ul,
+.page .entry ol { margin: .75rem 0 1.5rem; padding-left: 1.35rem; }
+.page .entry ul { list-style: disc; }
+.page .entry ol { list-style: decimal; }
+.page .entry li { margin: .25rem 0; padding-left: .15rem; }
+.page .entry li::marker { color: #a698cc; }
+.page .entry hr { border: 0; border-top: 1px solid var(--page-rule); margin: 2.5rem 0; }
+.page .entry blockquote {
+  margin: 1.8rem 0;
+  padding: .1rem 0 .1rem 1.1rem;
+  border-left: 2px solid #c5b8ed;
+  color: #625c74;
+  font-size: 1rem;
+  font-style: normal;
+}
+.page .entry img { max-width: 100%; height: auto; }
+.page .entry pre { overflow-x: auto; }
+.page .entry table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.page .entry th, .page .entry td { padding: .65rem .8rem; border-bottom: 1px solid var(--page-rule); }
+@media (max-width: 580px) {
+  .page { padding-bottom: 2.5rem; }
+  .page__header { margin-bottom: 1.8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page .entry a { transition: none; }
+}
+</style>
 
-  <h1>{{ page.title }}</h1>
+<article class="page">
+  <header class="page__header">
+    <h1 class="page__title">{{ page.title | escape }}</h1>
+    <div class="page__rule" aria-hidden="true"></div>
+  </header>
 
   <div class="entry">
     {{ content }}
   </div>
-
 </article>
