@@ -3,141 +3,83 @@ layout: default
 ---
 
 <style>
-/* 카테고리: 세로형 텍스트 목록 유지 */
-.site-category ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* 홈페이지 한정: 부드러운 파스텔 빛과 자유로운 리듬 */
+body {
+  background: radial-gradient(ellipse 52rem 36rem at 92% 8%, rgba(219,207,250,.42), transparent 72%),
+              radial-gradient(ellipse 42rem 35rem at 4% 58%, rgba(198,238,224,.36), transparent 72%),
+              radial-gradient(ellipse 36rem 28rem at 95% 94%, rgba(255,211,219,.30), transparent 72%),
+              #faf9fd;
+  color: #292637;
 }
-.site-category li {
-  margin: 0;
-  padding: .22rem 0;
-}
+.site-category { margin: 1.6rem 0 0; }
+.site-category ul { list-style:none; margin:0; padding:0; }
+.site-category li { margin:0; padding:.24rem 0; }
 .site-category .category-link {
-  display: inline-flex;
-  align-items: baseline;
-  gap: .4rem;
-  padding: .12rem 0;
-  color: inherit;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  text-decoration: none;
-  line-height: 1.5;
-  transition: color .15s ease;
+  display:inline-flex; align-items:baseline; gap:.48rem; padding:.08rem 0;
+  background:none; border:0; border-radius:0; box-shadow:none;
+  color:#302d40; text-decoration:none; line-height:1.5;
+  transition:color .2s ease, transform .2s ease;
 }
 .site-category .category-link:hover,
 .site-category .category-link:focus-visible {
-  color: #2864a0;
-  text-decoration: underline;
-  text-underline-offset: .22em;
+  color:#8064c5; transform:translateX(5px); text-decoration:none;
 }
-.site-category .category-link.active {
-  color: #2864a0;
-  font-weight: 700;
-}
-.site-category .category-count {
-  color: #9295a0;
-  font-size: .82em;
-  font-weight: 400;
-}
+.site-category .category-link.active { color:#8064c5; font-weight:700; }
+.site-category .category-count { color:#a19aac; font-size:.8em; font-weight:400; }
 .site-category #random-post-btn {
-  margin: 1rem 0;
-  padding: .55rem 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
+  display:inline-block; margin:1.2rem 0 0; padding:.15rem 0;
+  background:none; border:0; border-radius:0; box-shadow:none;
+  color:#8064c5; font:inherit; cursor:pointer; text-align:left;
+  transition:letter-spacing .2s ease, color .2s ease;
 }
-.site-category #random-post-btn:hover { color: #2864a0; }
-
-/* 최신 글만 각진 메모지 스타일 적용: 카테고리/랜덤 글은 그대로 */
-.home-latest {
-  margin-top: 2.5rem;
-}
+.site-category #random-post-btn:hover { color:#56439a; letter-spacing:.02em; }
+.home-latest { margin-top:4rem; }
 .home-latest__heading {
-  margin: 0 0 1rem;
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: -.025em;
+  margin:0 0 1.45rem; color:#302d40; font-size:1.55rem;
+  font-weight:700; letter-spacing:-.045em;
 }
+/* 그리드는 배치만 담당: 카드 박스 대신 열린 텍스트 컴포지션 */
 .home-latest__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:2.1rem 2.6rem; list-style:none; margin:0; padding:0;
 }
-.home-latest__grid > li {
-  min-width: 0;
-  margin: 0;
-}
+.home-latest__grid > li { min-width:0; margin:0; }
+.home-latest__grid > li:nth-child(even) { padding-top:2.2rem; }
 .home-latest__card {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-  height: 100%;
-  padding: 1.25rem;
-  border: 1px solid #d9d7cf;
-  border-radius: 0;
-  background: #fffefa;
-  color: #243247;
-  text-decoration: none;
-  box-shadow: 4px 4px 0 #e9e6dc;
-  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  position:relative; display:flex; flex-direction:column; align-items:flex-start;
+  gap:.65rem; min-height:11rem; padding:1.05rem .2rem 1.15rem;
+  background:transparent; border:0; border-top:1px solid #dcd5eb;
+  border-radius:0; box-shadow:none; color:#302d40; text-decoration:none;
+  transition:border-color .2s ease, transform .2s ease;
 }
-.home-latest__card:hover,
-.home-latest__card:focus-visible {
-  border-color: #a6a398;
-  box-shadow: 6px 6px 0 #dedacf;
-  transform: translate(-2px, -2px);
-  text-decoration: none;
+.home-latest__card:hover, .home-latest__card:focus-visible {
+  border-top-color:#9a80d4; transform:translateY(-3px); text-decoration:none;
 }
 .home-latest__title {
-  margin: 0;
-  color: inherit;
-  font-size: 1.05rem;
-  font-weight: 650;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
+  margin:0; font-size:1.15rem; line-height:1.48; font-weight:650;
+  letter-spacing:-.03em; color:#302d40; overflow-wrap:anywhere;
 }
-.home-latest__date {
-  color: #718096;
-  font-size: .82rem;
-}
-/* 카드 미리보기와 하단 더 보기 */
+.home-latest__date { order:-1; color:#938aa3; font-size:.78rem; letter-spacing:.035em; }
 .home-latest__excerpt {
-  margin: 0;
-  color: #566579;
-  font-size: .92rem;
-  line-height: 1.7;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  overflow-wrap: anywhere;
+  margin:0; color:#706b7e; font-size:.9rem; line-height:1.7;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3;
+  overflow:hidden; overflow-wrap:anywhere;
 }
 .home-latest__more {
-  margin-top: auto;
-  padding-top: .35rem;
-  color: #2864a0;
-  font-size: .9rem;
-  font-weight: 650;
+  margin-top:auto; padding-top:.45rem; color:#8468bc;
+  font-size:.86rem; font-weight:600;
 }
-.home-latest__card:hover .home-latest__more { text-decoration: underline; }
-@media (max-width: 580px) {
-  .home-latest__grid { grid-template-columns: 1fr; }
+.home-latest__card:hover .home-latest__more { color:#59419d; }
+@media(max-width:580px) {
+  .home-latest { margin-top:3rem; }
+  .home-latest__grid { grid-template-columns:1fr; gap:1.05rem; }
+  .home-latest__grid > li:nth-child(even) { padding-top:0; }
+  .home-latest__card { min-height:0; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .site-category .category-link,
-  .home-latest__card { transition: none; }
-  .home-latest__card:hover { transform: none; }
+@media(prefers-reduced-motion:reduce) {
+  .site-category .category-link, .site-category #random-post-btn,
+  .home-latest__card { transition:none; }
+  .site-category .category-link:hover, .home-latest__card:hover { transform:none; }
 }
 </style>
 
@@ -156,7 +98,7 @@ layout: default
 
   </ul>
 
-  <button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 글</button>
+  <button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 포스트</button>
   <script src="{{ '/random.js' | relative_url }}"></script>
   <script>
   document.getElementById('random-post-btn').addEventListener('click', function(){
