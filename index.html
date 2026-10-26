@@ -49,7 +49,7 @@ layout: default
 }
 .site-category #random-post-btn:hover { color: #2864a0; }
 
-/* 최신 글에만 카드 스타일 적용 */
+/* 최신 글만 각진 메모지 스타일 적용: 카테고리/랜덤 글은 그대로 */
 .home-latest {
   margin-top: 2.5rem;
 }
@@ -77,19 +77,19 @@ layout: default
   gap: .75rem;
   height: 100%;
   padding: 1.25rem;
-  border: 1px solid #e3e8ee;
-  border-radius: 14px;
-  background: #fff;
+  border: 1px solid #d9d7cf;
+  border-radius: 0;
+  background: #fffefa;
   color: #243247;
   text-decoration: none;
-  box-shadow: 0 3px 12px rgba(25, 48, 76, .035);
+  box-shadow: 4px 4px 0 #e9e6dc;
   transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
 .home-latest__card:hover,
 .home-latest__card:focus-visible {
-  border-color: #a7bedb;
-  box-shadow: 0 8px 24px rgba(25, 48, 76, .09);
-  transform: translateY(-2px);
+  border-color: #a6a398;
+  box-shadow: 6px 6px 0 #dedacf;
+  transform: translate(-2px, -2px);
   text-decoration: none;
 }
 .home-latest__title {
@@ -101,10 +101,29 @@ layout: default
   overflow-wrap: anywhere;
 }
 .home-latest__date {
-  margin-top: auto;
   color: #718096;
   font-size: .82rem;
 }
+/* 카드 미리보기와 하단 더 보기 */
+.home-latest__excerpt {
+  margin: 0;
+  color: #566579;
+  font-size: .92rem;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.home-latest__more {
+  margin-top: auto;
+  padding-top: .35rem;
+  color: #2864a0;
+  font-size: .9rem;
+  font-weight: 650;
+}
+.home-latest__card:hover .home-latest__more { text-decoration: underline; }
 @media (max-width: 580px) {
   .home-latest__grid { grid-template-columns: 1fr; }
 }
@@ -150,6 +169,11 @@ layout: default
           <time class="home-latest__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
             {{ post.date | date: '%Y.%m.%d' }}
           </time>
+          {% assign preview = post.excerpt | markdownify | strip_html | normalize_whitespace | strip %}
+          {% if preview != '' %}
+            <p class="home-latest__excerpt">{{ preview | truncate: 150 | escape }}</p>
+          {% endif %}
+          <span class="home-latest__more">더 보기 →</span>
         </a>
       </li>
     {% endfor %}
