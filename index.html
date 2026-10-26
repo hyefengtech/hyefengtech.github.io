@@ -11,11 +11,13 @@ layout: default
 }
 .site-category li {
   margin: 0;
-  border-bottom: 1px solid #e9edf2;
+  padding: .22rem 0;
 }
 .site-category .category-link {
-  display: block;
-  padding: .9rem .25rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .4rem;
+  padding: .12rem 0;
   color: inherit;
   background: transparent;
   border: 0;
@@ -23,17 +25,22 @@ layout: default
   box-shadow: none;
   text-decoration: none;
   line-height: 1.5;
-  transition: color .15s ease, padding-left .15s ease;
+  transition: color .15s ease;
 }
 .site-category .category-link:hover,
 .site-category .category-link:focus-visible {
   color: #2864a0;
-  padding-left: .6rem;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: .22em;
 }
 .site-category .category-link.active {
   color: #2864a0;
   font-weight: 700;
+}
+.site-category .category-count {
+  color: #9295a0;
+  font-size: .82em;
+  font-weight: 400;
 }
 .site-category #random-post-btn {
   margin: 1rem 0;
@@ -142,7 +149,7 @@ layout: default
       {% if node.title != null %}
         {% if node.layout == "category" %}
           <li><a class="category-link {% if page.url == node.url %} active{% endif %}"
-          href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a></li>
+          href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}{% assign category_key = node.category | default: node.title %}{% assign category_posts = site.categories[category_key] %}<span class="category-count">({{ category_posts.size | default: 0 }})</span></a></li>
         {% endif %}
       {% endif %}
     {% endfor %}
@@ -179,3 +186,4 @@ layout: default
     {% endfor %}
   </ul>
 </section>
+
