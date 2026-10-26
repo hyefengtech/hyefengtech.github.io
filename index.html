@@ -2,6 +2,83 @@
 layout: default
 ---
 
+<style>
+/* 홈 카테고리 내비게이션: 기존 Liquid 로직과 링크 유지 */
+.site-category {
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
+}
+.site-category ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.site-category li { margin: 0; }
+.site-category .category-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .65rem 1.05rem;
+  border: 1px solid #dce2e9;
+  border-radius: 12px;
+  background: #fff;
+  color: #27364b;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.site-category .category-link:hover,
+.site-category .category-link:focus-visible {
+  background: #f5f9ff;
+  border-color: #87a9d8;
+  box-shadow: 0 4px 14px rgba(28, 62, 107, .09);
+  transform: translateY(-2px);
+}
+.site-category .category-link:focus-visible,
+.site-category #random-post-btn:focus-visible {
+  outline: 3px solid #7ca8e8;
+  outline-offset: 3px;
+}
+.site-category .category-link.active {
+  background: #eaf2ff;
+  border-color: #85a9dc;
+}
+.site-category #random-post-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin: 1.25rem 0 0;
+  padding: .65rem 1.1rem;
+  border: 1px solid #cdd8e6;
+  border-radius: 12px;
+  background: #f7f9fc;
+  color: #27364b;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.site-category #random-post-btn:hover {
+  background: #eaf2ff;
+  border-color: #87a9d8;
+  transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+  .site-category ul { gap: .55rem; }
+  .site-category .category-link { padding: .6rem .85rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-category .category-link,
+  .site-category #random-post-btn { transition: none; }
+  .site-category .category-link:hover,
+  .site-category #random-post-btn:hover { transform: none; }
+}
+</style>
+
 <header class="site-category">
   <ul style="list-style:none;">
 
@@ -14,18 +91,15 @@ layout: default
         {% endif %}
       {% endif %}
     {% endfor %}
-    
-</ul>
 
-<button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 글</button>
-<script src="{{ '/random.js' | relative_url }}"></script>
-<script>
-document.getElementById('random-post-btn').addEventListener('click', function(){
-  var url = randomPosts[Math.floor(Math.random()*randomPosts.length)];
-  window.location.href = url;
-});
-</script>
+  </ul>
 
-
+  <button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 글</button>
+  <script src="{{ '/random.js' | relative_url }}"></script>
+  <script>
+  document.getElementById('random-post-btn').addEventListener('click', function(){
+    var url = randomPosts[Math.floor(Math.random()*randomPosts.length)];
+    window.location.href = url;
+  });
+  </script>
 </header>
-    
