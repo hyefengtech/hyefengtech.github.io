@@ -452,36 +452,25 @@ layout: default
 (function () {
   'use strict';
 
-  var entry = document.querySelector('.creative-post__entry');
-  if (!entry) return;
+  // 게시글 영역에만 복사 방지 적용
+  var post = document.querySelector('.creative-post');
+  if (!post) return;
 
-  // 코드 블록에서만 복사와 잘라내기 제한
-  entry.addEventListener('copy', function (event) {
-    var selection = window.getSelection();
-    if (!selection || selection.isCollapsed) return;
-
-    var anchor = selection.anchorNode;
-    var focus = selection.focusNode;
-
-    var anchorElement = anchor && (
-      anchor.nodeType === 1 ? anchor : anchor.parentElement
-    );
-    var focusElement = focus && (
-      focus.nodeType === 1 ? focus : focus.parentElement
-    );
-
-    if (
-      (anchorElement && anchorElement.closest('pre')) ||
-      (focusElement && focusElement.closest('pre'))
-    ) {
+  // 게시글 내부에서 시작한 복사 및 잘라내기 차단
+  ['copy', 'cut'].forEach(function (type) {
+    post.addEventListener(type, function (event) {
       event.preventDefault();
-    }
+    });
   });
 
-  entry.addEventListener('cut', function (event) {
-    if (event.target.closest('pre')) {
-      event.preventDefault();
-    }
+  // 게시글 내부의 우클릭 메뉴 차단
+  post.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+  });
+
+  // 게시글에서 드래그 시작 제한 (이미지 등)
+  post.addEventListener('dragstart', function (event) {
+    event.preventDefault();
   });
 })();
 </script>
