@@ -32,10 +32,10 @@ layout: default
 .brand-home__featured .brand-home__post-list li::before { content: "NOTE /"; display: block; margin-bottom: 13px; color: #9a89c4; font-size: 10px; font-weight: 750; letter-spacing: .13em; }
 .brand-home__post-list a { font-size: 15px; }
 .brand-home__post-meta { display: flex; flex-wrap: wrap; gap: 7px 12px; margin-top: 13px; color: #8a8494; font-size: 12px; }
-.brand-home__post-excerpt { margin: 8px 0 0; color: #716c7d; font-size: 13px; line-height: 1.7; }
+.brand-home__post-excerpt { margin: 12px 0 0; color: #716c7d; font-size: 13px; line-height: 1.75; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; overflow-wrap: anywhere; }
 .brand-home__category-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
 .brand-home__category-list li { margin: 0; }
-.brand-home__category-list a { display: inline-block; padding: 8px 13px; border: 1px solid #e8e3f0; border-radius: 0; background: #faf9ff; color: #6653a8; font-size: 13px; }
+.brand-home__category-list a { display: inline-block; padding: 8px 13px; border: 1px solid #e8e3f0; border-radius: 999px; background: #faf9ff; color: #6653a8; font-size: 13px; }
 .brand-home__random { margin-top: 20px; padding: 0; border: 0; background: none; color: #7965bd; font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
 .brand-home__random:hover { text-decoration: underline; }
 .brand-home__empty { color: #8a8494; font-size: 14px; line-height: 1.8; }
@@ -75,11 +75,11 @@ layout: default
     <ul class="brand-home__post-list">
       {% if featured_posts.size > 0 %}
         {% for post in featured_posts limit: 3 %}
-          <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div>{% if post.description %}<p class="brand-home__post-excerpt">{{ post.description | strip_html | escape }}</p>{% endif %}</li>
+          <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div><p class="brand-home__post-excerpt">{% if post.description %}{{ post.description | strip_html | escape }}{% else %}{{ post.excerpt | markdownify | strip_html | normalize_whitespace | truncate: 135 | escape }}{% endif %}</p></li>
         {% endfor %}
       {% else %}
         {% for post in site.posts limit: 3 %}
-          <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div></li>
+          <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div><p class="brand-home__post-excerpt">{% if post.description %}{{ post.description | strip_html | escape }}{% else %}{{ post.excerpt | markdownify | strip_html | normalize_whitespace | truncate: 135 | escape }}{% endif %}</p></li>
         {% endfor %}
       {% endif %}
     </ul>
@@ -89,7 +89,7 @@ layout: default
     <div class="brand-home__section-head"><h2 id="latest-title">Recent Posts</h2><span class="brand-home__hint">최근 기록 8개</span></div>
     <ul class="brand-home__post-list">
       {% for post in site.posts limit: 8 %}
-        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div></li>
+        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div><p class="brand-home__post-excerpt">{% if post.description %}{{ post.description | strip_html | escape }}{% else %}{{ post.excerpt | markdownify | strip_html | normalize_whitespace | truncate: 135 | escape }}{% endif %}</p></li>
       {% endfor %}
     </ul>
   </section>
