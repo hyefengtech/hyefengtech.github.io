@@ -1,5 +1,62 @@
-{% include svg-icons.html %}
-
-{% if site.footer-text %}
-<p>{{ site.footer-text }}</p>
-{% endif %}
+<div class="hf-footer">
+  <div class="hf-footer__main">
+    <div class="hf-footer__identity">
+      <a class="hf-footer__name" href="{{ '/' | relative_url }}">{{ site.name }}</a>
+      {% if site.description %}<span class="hf-footer__description">{{ site.description }}</span>{% endif %}
+    </div>
+    <a class="hf-footer__top" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">맨 위로 ↑</a>
+  </div>
+  <div class="hf-footer__bottom">
+    <div class="hf-footer__links">{% include svg-icons.html %}</div>
+    {% if site.footer-text %}<p class="hf-footer__note">{{ site.footer-text }}</p>{% endif %}
+  </div>
+</div>
+<style>
+/* Footer only: works across all pages through _layouts/default.html */
+.wrapper-footer {
+  background: transparent;
+  border-top: 0;
+  border-bottom: 0;
+  margin-top: 5rem;
+}
+.wrapper-footer .footer {
+  padding: 0 0 2rem;
+  text-align: left;
+}
+.hf-footer {
+  border-top: 1px solid #e5e0ef;
+  padding-top: 1.4rem;
+  color: #777286;
+  font-size: .83rem;
+}
+.hf-footer__main,
+.hf-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.hf-footer__identity { display: flex; flex-direction: column; gap: .12rem; }
+.hf-footer__name {
+  color: #393446;
+  font-size: .94rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+.hf-footer__description { color: #8a8498; font-size: .78rem; }
+.hf-footer__top { color: #7864af; text-decoration: none; white-space: nowrap; }
+.hf-footer__top:hover,
+.hf-footer__name:hover { color: #5c489a; }
+.hf-footer__bottom { margin-top: 1.15rem; }
+.hf-footer__links { display: flex; align-items: center; min-width: 0; }
+.hf-footer__links .svg-icon { margin: 0 .6rem 0 0; }
+.hf-footer__note { margin: 0; color: #918b9e; font-size: .76rem; }
+@media (max-width: 580px) {
+  .wrapper-footer { margin-top: 3.5rem; }
+  .hf-footer__main, .hf-footer__bottom { align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hf-footer * { scroll-behavior: auto; }
+}
+</style>
