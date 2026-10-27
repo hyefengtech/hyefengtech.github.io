@@ -12,37 +12,43 @@ layout: default
 .brand-home__hero h1 { margin: 0 0 20px; font-size: clamp(29px, 5.5vw, 45px); line-height: 1.35; letter-spacing: -.045em; font-weight: 750; }
 .brand-home__hero p { margin: 0; color: #625d70; font-size: 16px; line-height: 1.9; }
 .brand-home__hero-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
-.brand-home__hero-links a { display: inline-block; padding: 10px 16px; border: 1px solid #e8e3f0; border-radius: 10px; background: #faf9ff; color: #6653a8; font-size: 14px; font-weight: 650; }
+.brand-home__hero-links a { display: inline-block; padding: 10px 16px; border: 1px solid #e8e3f0; border-radius: 0; background: #faf9ff; color: #6653a8; font-size: 14px; font-weight: 650; }
 .brand-home__section { padding: 28px 0 33px; border-top: 1px solid #e8e3f0; }
 .brand-home__section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 19px; }
 .brand-home__section h2 { margin: 0; font-size: 21px; font-weight: 750; letter-spacing: -.035em; }
 .brand-home__hint { color: #8a8494; font-size: 13px; }
 .brand-home__activities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.brand-home__activity { display: block; min-height: 108px; padding: 19px; border: 1px solid #e8e3f0; border-radius: 14px; background: #faf9ff; transition: border-color .2s ease, transform .2s ease; }
-.brand-home__activity:hover { border-color: #b7a8dc; transform: translateY(-2px); }
+.brand-home__activity { display: block; min-height: 108px; padding: 19px; border: 1px solid #e8e3f0; border-radius: 0; background: #faf9ff; border-left: 3px solid #a797d3; transition: border-color .2s ease, background .2s ease; }
+.brand-home__activity:hover { border-color: #b7a8dc; background: #f4f0fc; }
 .brand-home__activity strong { display: block; margin-bottom: 9px; font-size: 16px; }
 .brand-home__activity span { display: block; color: #716c7d; font-size: 13px; line-height: 1.65; }
-.brand-home__post-list { margin: 0; padding: 0; list-style: none; }
-.brand-home__post-list li { padding: 16px 0; border-bottom: 1px solid #eeeaf4; }
-.brand-home__post-list li:first-child { padding-top: 0; }
-.brand-home__post-list a { display: block; font-size: 16px; font-weight: 650; line-height: 1.65; overflow-wrap: anywhere; }
-.brand-home__post-meta { display: flex; flex-wrap: wrap; gap: 7px 12px; margin-top: 6px; color: #8a8494; font-size: 12px; }
+.brand-home__post-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.brand-home__featured .brand-home__post-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.brand-home__post-list li { min-width: 0; padding: 20px; border: 1px solid #e8e3f0; border-radius: 0; background: #fffefb; border-left: 3px solid #b7a8dc; box-shadow: 3px 3px 0 #eee9f5; transition: background .2s ease, border-color .2s ease; }
+.brand-home__post-list li:hover { border-color: #a797d3; background: #faf8ff; }
+
+.brand-home__post-list li::before { content: "NOTE /"; display: block; margin-bottom: 13px; color: #9a89c4; font-size: 10px; font-weight: 750; letter-spacing: .13em; }
+.brand-home__post-list a { display: block; font-size: 16px; font-weight: 700; line-height: 1.55; overflow-wrap: anywhere; }
+.brand-home__featured .brand-home__post-list li::before { content: "NOTE /"; display: block; margin-bottom: 13px; color: #9a89c4; font-size: 10px; font-weight: 750; letter-spacing: .13em; }
+.brand-home__post-list a { font-size: 15px; }
+.brand-home__post-meta { display: flex; flex-wrap: wrap; gap: 7px 12px; margin-top: 13px; color: #8a8494; font-size: 12px; }
 .brand-home__post-excerpt { margin: 8px 0 0; color: #716c7d; font-size: 13px; line-height: 1.7; }
 .brand-home__category-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
 .brand-home__category-list li { margin: 0; }
-.brand-home__category-list a { display: inline-block; padding: 8px 13px; border: 1px solid #e8e3f0; border-radius: 999px; background: #faf9ff; color: #6653a8; font-size: 13px; }
+.brand-home__category-list a { display: inline-block; padding: 8px 13px; border: 1px solid #e8e3f0; border-radius: 0; background: #faf9ff; color: #6653a8; font-size: 13px; }
 .brand-home__random { margin-top: 20px; padding: 0; border: 0; background: none; color: #7965bd; font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
 .brand-home__random:hover { text-decoration: underline; }
 .brand-home__empty { color: #8a8494; font-size: 14px; line-height: 1.8; }
-@media (max-width: 520px) { .brand-home__hero { padding-top: 16px; } .brand-home__activities { grid-template-columns: 1fr; } .brand-home__activity { min-height: 0; } .brand-home__section-head { align-items: flex-start; flex-direction: column; gap: 5px; } }
-@media (prefers-reduced-motion: reduce) { .brand-home__activity { transition: none; } .brand-home__activity:hover { transform: none; } }
+@media (max-width: 700px) { .brand-home__featured .brand-home__post-list { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .brand-home__post-list { grid-template-columns: 1fr; } .brand-home__hero { padding-top: 16px; } .brand-home__activities { grid-template-columns: 1fr; } .brand-home__activity { min-height: 0; } .brand-home__section-head { align-items: flex-start; flex-direction: column; gap: 5px; } }
+@media (prefers-reduced-motion: reduce) { .brand-home__activity, .brand-home__post-list li { transition: none; } .brand-home__activity:hover, .brand-home__post-list li:hover { transform: none; } }
 </style>
 
 <main class="brand-home">
   <header class="brand-home__hero">
     <span class="brand-home__eyebrow">Software · Humanities · Creative Work</span>
     <h1>기술을 탐구하고<br>이야기와 세계를 만듭니다.</h1>
-    <p>인지니어스를 운영하며 개발, 디지털 인문학 연구, 플레이어블 콘텐츠 플랫폼과 오리지널 IP를 만들어갑니다. 그 과정에서 배우고 실험하고 생각한 것들을 기록하는 공간입니다.</p>
+    <p>인지니어스를 운영하며 개발, 디지털 인문학 연구, 콘텐츠 플랫폼과 오리지널 IP를 만들어갑니다. 그 과정에서 배우고 실험하고 생각한 것들을 기록하는 공간입니다.</p>
     <div class="brand-home__hero-links">
       <a href="{{ '/about/' | relative_url }}">About me</a>
       <a href="https://worldplay.kr" target="_blank" rel="noopener noreferrer">Worldplay ↗</a>
@@ -64,7 +70,7 @@ layout: default
   </section>
 
   {% assign featured_posts = site.posts | where: 'featured', true %}
-  <section class="brand-home__section" aria-labelledby="featured-title">
+  <section class="brand-home__section brand-home__featured" aria-labelledby="featured-title">
     <div class="brand-home__section-head"><h2 id="featured-title">Featured Writing</h2><span class="brand-home__hint">먼저 읽어보면 좋은 글</span></div>
     <ul class="brand-home__post-list">
       {% if featured_posts.size > 0 %}
@@ -114,4 +120,5 @@ layout: default
   });
 })();
 </script>
+
 
