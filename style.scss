@@ -177,3 +177,17 @@ footer { color: $muted; font-size: 13px; padding: 28px 0; }
   a { transition: none; }
 }
 
+/* Page title accent line */
+.section-title {
+  margin-bottom: 32px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 3px;
+  margin-top: 14px;
+  background: #7965bd;
+  border-radius: 3px;
+}
