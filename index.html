@@ -1,3 +1,4 @@
+
 ---
 layout: default
 ---
@@ -26,6 +27,7 @@ layout: default
   transition:letter-spacing .2s ease, color .2s ease;
 }
 .site-category #random-post-btn:hover { color:#554198; letter-spacing:.02em; }
+
 .home-latest { margin-top:4rem; }
 .home-latest__heading {
   margin:0 0 1.45rem; color:#302e3c; font-size:1.55rem;
@@ -52,7 +54,9 @@ layout: default
   margin:0; font-size:1.15rem; line-height:1.48; font-weight:650;
   letter-spacing:-.03em; color:#302e3c; overflow-wrap:anywhere;
 }
-.home-latest__date { order:-1; color:#79758b; font-size:.78rem; letter-spacing:.035em; }
+.home-latest__date {
+  order:-1; color:#79758b; font-size:.78rem; letter-spacing:.035em;
+}
 .home-latest__excerpt {
   margin:0; color:#716b7c; font-size:.9rem; line-height:1.7;
   display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3;
@@ -63,6 +67,7 @@ layout: default
   font-size:.86rem; font-weight:600;
 }
 .home-latest__card:hover .home-latest__more { color:#554198; }
+
 @media(max-width:580px) {
   .home-latest { margin-top:3rem; }
   .home-latest__grid { grid-template-columns:1fr; gap:1.05rem; }
@@ -70,63 +75,81 @@ layout: default
   .home-latest__card { min-height:0; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .site-category .category-link, .site-category #random-post-btn,
+  .site-category .category-link,
+  .site-category #random-post-btn,
   .home-latest__card { transition:none; }
-  .site-category .category-link:hover, .home-latest__card:hover { transform:none; }
+  .site-category .category-link:hover,
+  .home-latest__card:hover { transform:none; }
 }
 </style>
 
 <div class="unified-page-content">
-{% include page-heading.html title="Categories" %}
 
-<header class="site-category">
+  {% include page-heading.html title="Categories" %}
 
-<header class="site-category">
-  <ul style="list-style:none;">
-
-    {% assign pages_list = site.pages %}
-    {% for node in pages_list %}
-      {% if node.title != null %}
-        {% if node.layout == "category" %}
-          <li><a class="category-link {% if page.url == node.url %} active{% endif %}"
-          href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}{% assign category_key = node.category | default: node.title %}{% assign category_posts = site.categories[category_key] %}<span class="category-count">({{ category_posts.size | default: 0 }})</span></a></li>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-
-  </ul>
-
-  <button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 포스트</button>
-  <script src="{{ '/random.js' | relative_url }}"></script>
-  <script>
-  document.getElementById('random-post-btn').addEventListener('click', function(){
-    var url = randomPosts[Math.floor(Math.random()*randomPosts.length)];
-    window.location.href = url;
-  });
-  </script>
-</header>
-
-<section class="home-latest" aria-labelledby="home-latest-heading">
-  <h2 id="home-latest-heading" class="home-latest__heading">Latest Posts</h2>
-  <ul class="home-latest__grid">
-    {% for post in site.posts limit:5 %}
-      <li>
-        <a class="home-latest__card" href="{{ post.url | relative_url }}">
-          <h3 class="home-latest__title">{{ post.title | escape }}</h3>
-          <time class="home-latest__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-            {{ post.date | date: '%Y.%m.%d' }}
-          </time>
-          {% assign preview = post.excerpt | markdownify | strip_html | normalize_whitespace | strip %}
-          {% if preview != '' %}
-            <p class="home-latest__excerpt">{{ preview | truncate: 150 | escape }}</p>
+  <header class="site-category">
+    <ul>
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null %}
+          {% if node.layout == "category" %}
+            <li>
+              <a
+                class="category-link{% if page.url == node.url %} active{% endif %}"
+                href="{{ site.baseurl }}{{ node.url }}"
+              >
+                {{ node.title }}
+                {% assign category_key = node.category | default: node.title %}
+                {% assign category_posts = site.categories[category_key] %}
+                <span class="category-count">({{ category_posts.size | default: 0 }})</span>
+              </a>
+            </li>
           {% endif %}
-          <span class="home-latest__more">더 보기 →</span>
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <button id="random-post-btn" type="button">🎲 랜덤 포스트</button>
+
+    <script src="{{ '/random.js' | relative_url }}"></script>
+    <script>
+      document.getElementById('random-post-btn').addEventListener('click', function () {
+        if (typeof randomPosts === 'undefined' || !randomPosts.length) return;
+        var url = randomPosts[Math.floor(Math.random() * randomPosts.length)];
+        window.location.href = url;
+      });
+    </script>
+  </header>
+
+  <section class="home-latest" aria-labelledby="home-latest-heading">
+    <h2 id="home-latest-heading" class="home-latest__heading">Latest Posts</h2>
+
+    <ul class="home-latest__grid">
+      {% for post in site.posts limit:5 %}
+        <li>
+          <a class="home-latest__card" href="{{ post.url | relative_url }}">
+            <h3 class="home-latest__title">{{ post.title | escape }}</h3>
+
+            <time
+              class="home-latest__date"
+              datetime="{{ post.date | date: '%Y-%m-%d' }}"
+            >
+              {{ post.date | date: '%Y.%m.%d' }}
+            </time>
+
+            {% assign preview = post.excerpt | markdownify | strip_html | normalize_whitespace | strip %}
+            {% if preview != '' %}
+              <p class="home-latest__excerpt">{{ preview | truncate: 150 | escape }}</p>
+            {% endif %}
+
+            <span class="home-latest__more">더 보기 →</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
 
 </div>
-</section>
+
 
 
