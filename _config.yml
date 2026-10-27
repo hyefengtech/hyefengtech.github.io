@@ -15,6 +15,12 @@ navigation:
     url: /
   - name: About
     url: /about
+  - name: DH Lab
+    url: /dh/
+  - name: Projects
+    url: /projects/
+  - name: Original IP
+    url: /ip/
   - name: Archive
     url: /archive
   - name: Tags
