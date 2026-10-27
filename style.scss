@@ -203,3 +203,11 @@ footer { color: $muted; font-size: 13px; padding: 28px 0; }
     margin-bottom: 1.8rem;
   }
 }
+
+/* Shared width for menu pages */
+.unified-page-content {
+  width: 100%;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
