@@ -446,3 +446,42 @@ layout: default
   </div>
 
 </article>
+
+
+<script>
+(function () {
+  'use strict';
+
+  var entry = document.querySelector('.creative-post__entry');
+  if (!entry) return;
+
+  // 코드 블록에서만 복사와 잘라내기 제한
+  entry.addEventListener('copy', function (event) {
+    var selection = window.getSelection();
+    if (!selection || selection.isCollapsed) return;
+
+    var anchor = selection.anchorNode;
+    var focus = selection.focusNode;
+
+    var anchorElement = anchor && (
+      anchor.nodeType === 1 ? anchor : anchor.parentElement
+    );
+    var focusElement = focus && (
+      focus.nodeType === 1 ? focus : focus.parentElement
+    );
+
+    if (
+      (anchorElement && anchorElement.closest('pre')) ||
+      (focusElement && focusElement.closest('pre'))
+    ) {
+      event.preventDefault();
+    }
+  });
+
+  entry.addEventListener('cut', function (event) {
+    if (event.target.closest('pre')) {
+      event.preventDefault();
+    }
+  });
+})();
+</script>
