@@ -177,12 +177,22 @@ footer { color: $muted; font-size: 13px; padding: 28px 0; }
   a { transition: none; }
 }
 
-/* Page title accent line */
-.section-title {
-  margin-bottom: 32px;
+/* Unified page headings */
+.unified-page-heading {
+  margin: 8px 0 32px;
 }
 
-.section-title::after {
+.unified-page-heading__title {
+  margin: 0;
+  padding: 0;
+  color: #302e3c;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.045em;
+}
+
+.unified-page-heading::after {
   content: "";
   display: block;
   width: 42px;
