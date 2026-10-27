@@ -1,3 +1,4 @@
+
 ---
 layout: default
 ---
@@ -13,6 +14,7 @@ layout: default
     --post-accent: #7965bd;
     --post-line: #e8e3f0;
 
+    position: relative;
     color: var(--post-ink);
     padding: 12px 0 28px;
     min-width: 0;
@@ -252,7 +254,6 @@ layout: default
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     word-break: normal;
@@ -280,6 +281,111 @@ layout: default
   .creative-post__entry th {
     color: #625589;
     background: #f6f3fc;
+  }
+
+  /* ========================================
+     TABLE OF CONTENTS
+  ======================================== */
+
+  .creative-post__toc[hidden] {
+    display: none !important;
+  }
+
+  .creative-post__toc {
+    box-sizing: border-box;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .creative-post__toc-heading {
+    margin: 0 0 14px;
+    color: var(--post-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .creative-post__toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--post-line);
+  }
+
+  .creative-post__toc-item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .creative-post__toc-link {
+    display: block;
+    margin-left: -1px;
+    padding: 7px 10px 7px 13px;
+    border-left: 2px solid transparent;
+    color: var(--post-muted);
+    font-size: 12px;
+    line-height: 1.55;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color .18s ease, border-color .18s ease;
+  }
+
+  .creative-post__toc-item--sub .creative-post__toc-link {
+    padding-left: 25px;
+    font-size: 11px;
+  }
+
+  .creative-post__toc-link:hover,
+  .creative-post__toc-link:focus-visible {
+    color: var(--post-accent);
+  }
+
+  .creative-post__toc-link.is-active {
+    color: var(--post-accent);
+    border-left-color: var(--post-accent);
+    font-weight: 600;
+  }
+
+  .creative-post__entry h2,
+  .creative-post__entry h3 {
+    scroll-margin-top: 90px;
+  }
+
+  /*
+   * 기본: 좁은 화면에서는 본문 상단 목차
+   */
+  .creative-post__toc {
+    margin: 0 0 36px;
+    padding: 20px 22px;
+    background: #faf8ff;
+    border: 1px solid var(--post-line);
+    border-radius: 10px;
+  }
+
+  /*
+   * 넓은 화면: 본문 오른쪽 고정 목차
+   *
+   * 본문 너비는 유지하고,
+   * 화면 오른쪽의 여유 공간을 사용합니다.
+   */
+  @media (min-width: 1280px) {
+    .creative-post__toc {
+      position: fixed;
+      top: 112px;
+      right: max(22px, calc((100vw - 1200px) / 2));
+      width: 210px;
+      max-height: calc(100vh - 150px);
+      margin: 0;
+      padding: 8px 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      scrollbar-width: thin;
+    }
   }
 
   /* ========================================
@@ -362,6 +468,11 @@ layout: default
       line-height: 1.7;
     }
 
+    .creative-post__toc {
+      padding: 18px;
+      margin-bottom: 28px;
+    }
+
     .creative-post__pagination {
       gap: 14px;
       margin-top: 50px;
@@ -369,6 +480,12 @@ layout: default
 
     .creative-post__pager-link {
       font-size: 13px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .creative-post__toc-link {
+      transition: none;
     }
   }
 </style>
@@ -407,6 +524,17 @@ layout: default
     </div>
   </header>
 
+  <!-- 자동 생성 목차 -->
+  <nav
+    class="creative-post__toc"
+    aria-label="게시글 목차"
+    hidden
+  >
+    <p class="creative-post__toc-heading">On This Page</p>
+    <ul class="creative-post__toc-list"></ul>
+  </nav>
+
+  <!-- 기존 게시글 본문 -->
   <div class="entry creative-post__entry">
     {{ content }}
   </div>
@@ -447,30 +575,154 @@ layout: default
 
 </article>
 
-
 <script>
 (function () {
   'use strict';
 
-  // 게시글 영역에만 복사 방지 적용
   var post = document.querySelector('.creative-post');
   if (!post) return;
 
-  // 게시글 내부에서 시작한 복사 및 잘라내기 차단
-  ['copy', 'cut'].forEach(function (type) {
+  var entry = post.querySelector('.creative-post__entry');
+  var toc = post.querySelector('.creative-post__toc');
+  var list = post.querySelector('.creative-post__toc-list');
+
+  if (!entry || !toc || !list) return;
+
+  // Markdown의 ##, ### 제목을 HTML h2, h3에서 수집
+  var headings = Array.prototype.slice.call(
+    entry.querySelectorAll('h2, h3')
+  ).filter(function (heading) {
+    return heading.textContent.trim().length > 0;
+  });
+
+  // 제목이 2개 미만이면 목차를 표시하지 않음
+  if (headings.length < 2) return;
+
+  // 기존 ID와 충돌하지 않도록 확인
+  var usedIds = new Set(
+    Array.prototype.map.call(
+      document.querySelectorAll('[id]'),
+      function (element) {
+        return element.id;
+      }
+    )
+  );
+
+  headings.forEach(function (heading, index) {
+    if (!heading.id) {
+      var baseId = 'post-section-' + (index + 1);
+      var newId = baseId;
+      var suffix = 2;
+
+      while (usedIds.has(newId)) {
+        newId = baseId + '-' + suffix;
+        suffix++;
+      }
+
+      heading.id = newId;
+      usedIds.add(newId);
+    }
+
+    var item = document.createElement('li');
+    item.className = 'creative-post__toc-item';
+
+    if (heading.tagName.toLowerCase() === 'h3') {
+      item.classList.add('creative-post__toc-item--sub');
+    }
+
+    var link = document.createElement('a');
+    link.className = 'creative-post__toc-link';
+    link.href = '#' + encodeURIComponent(heading.id);
+    link.textContent = heading.textContent.trim();
+
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      var reducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      heading.scrollIntoView({
+        behavior: reducedMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+
+      history.replaceState(
+        null,
+        '',
+        '#' + encodeURIComponent(heading.id)
+      );
+
+      setActive(index);
+    });
+
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+
+  toc.hidden = false;
+
+  var links = Array.prototype.slice.call(
+    list.querySelectorAll('.creative-post__toc-link')
+  );
+
+  var activeIndex = -1;
+
+  function setActive(index) {
+    if (activeIndex === index) return;
+
+    activeIndex = index;
+
+    links.forEach(function (link, i) {
+      var active = i === index;
+
+      link.classList.toggle('is-active', active);
+
+      if (active) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  // 현재 읽고 있는 섹션을 스크롤 위치로 판단
+  function updateActiveHeading() {
+    var threshold = 130;
+    var currentIndex = 0;
+
+    headings.forEach(function (heading, index) {
+      if (heading.getBoundingClientRect().top <= threshold) {
+        currentIndex = index;
+      }
+    });
+
+    setActive(currentIndex);
+  }
+
+  var ticking = false;
+
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+
+    ticking = true;
+
+    window.requestAnimationFrame(function () {
+      updateActiveHeading();
+      ticking = false;
+    });
+  }, { passive: true });
+
+  window.addEventListener('resize', updateActiveHeading);
+
+  updateActiveHeading();
+
+  // 게시글 내부 복사 및 우클릭 제한
+  // 이전에 요청한 복사 방지 기능 유지
+  ['copy', 'cut', 'contextmenu', 'dragstart'].forEach(function (type) {
     post.addEventListener(type, function (event) {
       event.preventDefault();
     });
-  });
-
-  // 게시글 내부의 우클릭 메뉴 차단
-  post.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-  });
-
-  // 게시글에서 드래그 시작 제한 (이미지 등)
-  post.addEventListener('dragstart', function (event) {
-    event.preventDefault();
   });
 })();
 </script>
