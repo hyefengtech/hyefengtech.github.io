@@ -76,19 +76,24 @@ layout: default
 }
 </style>
 
-<h1 style="
+<h1 class="section-title" style="
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
   margin: 8px 0 32px;
   color: #302e3c;
   font-size: clamp(30px, 5vw, 46px);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -.045em;
-"
-  class="section-title">
+">
   Categories
+  <span aria-hidden="true" style="
+    flex: 1;
+    height: 1px;
+    background: #e8e3f0;
+  "></span>
 </h1>
-
-<div style="width:42px; height:3px; background:#7965bd; border-radius:3px; margin-top:-18px; margin-bottom:32px;"></div>
 
 <header class="site-category">
   <ul style="list-style:none;">
