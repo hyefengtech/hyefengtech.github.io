@@ -32,7 +32,7 @@ tags:
 ### 테스트 결과
 
 ~~~
-(base) baghyeliui-MacBookPro:Desktop spica$ tesseract hangul.png stdout -l kor
+(base) bag-MacBookPro:Desktop spica$ tesseract hangul.png stdout -l kor
 Warning: Invalid resolution 0 dpi. Using 70 instead.
 Estimating resolution as 157
 소년
@@ -51,7 +51,7 @@ Estimating resolution as 157
 -l kor 을 쳤을 때는 제목은 '소년'이라고 잘 나온대신 단풍잎을 '단품잎', 눈썹을 '눈썸'으로 오독했다. 아마 글씨체의 문제인 것 같다.
 
 ~~~
-(base) baghyeliui-MacBookPro:Desktop spica$ tesseract hangul.png stdout -l script/Hangul
+(base) bag-MacBookPro:Desktop spica$ tesseract hangul.png stdout -l script/Hangul
 Warning: Invalid resolution 0 dpi. Using 70 instead.
 Estimating resolution as 157
 초년
@@ -73,7 +73,7 @@ Estimating resolution as 157
 한글 인식을 해보니 좀 인식률이 떨어지기는 하지만 그다지 나쁘지 않은 것으로 보인다. 
 
 ~~~
-(base) baghyeliui-MacBookPro:Desktop spica$ tesseract english.png stdout
+(base) bag-MacBookPro:Desktop spica$ tesseract english.png stdout
 Warning: Invalid resolution 0 dpi. Using 70 instead.
 Estimating resolution as 130
 A Dream Within A Dream
