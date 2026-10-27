@@ -2,55 +2,142 @@
 layout: default
 ---
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
+<style>
+  .creative-post {
+    --post-ink: #302e3c;
+    --post-muted: #827c91;
+    --post-accent: #7965bd;
+    --post-line: #e8e3f0;
+    color: var(--post-ink);
+    padding: 12px 0 28px;
+  }
+  .creative-post__header { margin-bottom: 44px; }
+  .creative-post__eyebrow {
+    margin: 0 0 12px;
+    color: var(--post-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .creative-post__title {
+    margin: 0 0 16px;
+    color: var(--post-ink);
+    font-size: clamp(30px, 5vw, 43px);
+    font-weight: 650;
+    line-height: 1.28;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
+  }
+  .creative-post__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+  .creative-post__date { color: var(--post-muted); font-size: 13px; font-style: normal; }
+  .creative-post__tags { display: flex; flex-wrap: wrap; gap: 6px 12px; list-style: none; padding: 0; margin: 0; }
+  .creative-post__tags li { padding: 0; margin: 0; list-style: none; }
+  .creative-post__tag {
+    display: inline-block;
+    color: var(--post-accent);
+    font-size: 12px;
+    line-height: 1.7;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .18s ease, color .18s ease;
+  }
+  .creative-post__tag:hover, .creative-post__tag:focus-visible { color: #574397; border-bottom-color: currentColor; }
+  .creative-post__entry { font-size: 16px; line-height: 1.9; overflow-wrap: break-word; }
+  .creative-post__entry > :first-child { margin-top: 0; }
+  .creative-post__entry h2, .creative-post__entry h3, .creative-post__entry h4 {
+    color: var(--post-ink); letter-spacing: -.025em; line-height: 1.45;
+  }
+  .creative-post__entry h2 { margin-top: 2.1em; padding-bottom: .35em; border-bottom: 1px solid var(--post-line); }
+  .creative-post__entry h3 { margin-top: 1.7em; }
+  .creative-post__entry p, .creative-post__entry ul, .creative-post__entry ol { margin-top: 1em; margin-bottom: 1em; }
+  .creative-post__entry a { color: var(--post-accent); text-decoration: underline; text-decoration-color: #c7bde6; text-underline-offset: 3px; }
+  .creative-post__entry a:hover { text-decoration-color: currentColor; }
+  .creative-post__entry blockquote {
+    margin: 1.7em 0; padding: .25em 0 .25em 18px; border-left: 2px solid #b7a8dc;
+    color: #6f6880; font-size: 1em; font-style: normal;
+  }
+  .creative-post__entry img { display: block; max-width: 100%; height: auto; margin: 24px auto; border-radius: 6px; }
+  .creative-post__entry :not(pre) > code {
+    padding: .12em .36em; border-radius: 4px; background: #f0ecf8; color: #6752a1;
+    font-size: .9em; overflow-wrap: anywhere;
+  }
+  .creative-post__entry pre, .creative-post__entry .highlight {
+    max-width: 100%; overflow-x: auto; border-radius: 6px;
+  }
+  .creative-post__entry pre { padding: 16px 18px; font-size: 13px; line-height: 1.65; }
+  .creative-post__entry .highlight pre { margin: 0; }
+  .creative-post__entry table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 14px; }
+  .creative-post__entry th, .creative-post__entry td { padding: 9px 12px; border-bottom: 1px solid var(--post-line); text-align: left; }
+  .creative-post__entry th { color: #625589; background: #f6f3fc; }
+  .creative-post__pagination {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px; margin-top: 70px; padding: 22px 0 0;
+    border-top: 1px solid var(--post-line);
+  }
+  .creative-post__pager { min-width: 0; }
+  .creative-post__pager--next { text-align: right; }
+  .creative-post__pager-label { display: block; margin-bottom: 7px; color: var(--post-muted); font-size: 11px; letter-spacing: .08em; }
+  .creative-post__pager-link {
+    display: inline-block; max-width: 100%; color: var(--post-ink);
+    font-size: 14px; font-weight: 600; line-height: 1.55;
+    text-decoration: none; overflow-wrap: anywhere;
+    transition: color .18s ease;
+  }
+  .creative-post__pager-link:hover { color: var(--post-accent); }
+  .creative-post__comments { margin-top: 48px; }
+  @media (max-width: 540px) {
+    .creative-post { padding-top: 4px; }
+    .creative-post__header { margin-bottom: 32px; }
+    .creative-post__entry { font-size: 15px; line-height: 1.85; }
+    .creative-post__pagination { gap: 14px; margin-top: 50px; }
+    .creative-post__pager-link { font-size: 13px; }
+  }
+</style>
 
-  <div clsss="meta">
-    <span class="date">
-      {{ page.date | date: "%Y-%m-%d" }}
-    </span>
+<article class="post creative-post">
+  <header class="creative-post__header">
+    <p class="creative-post__eyebrow">Notes / Devlog</p>
+    <h1 class="creative-post__title">{{ page.title }}</h1>
+    <div class="creative-post__meta">
+      <time class="creative-post__date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+        {{ page.date | date: '%Y.%m.%d' }}
+      </time>
+      {% if page.tags and page.tags.size > 0 %}
+      <ul class="creative-post__tags" aria-label="태그">
+        {% for tag in page.tags %}
+        <li>
+          <a class="creative-post__tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">#{{ tag }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </header>
 
-    
-    <ul class="tag">
-      {% for tag in page.tags %}
-      <li>
-        <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
-          {{ tag }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    
-    {% if page.tags %}
-  {% for tag in page.tags %}
-    <span class="tag">{{ tag }}</span>
-  {% endfor %}
-{% endif %}
-    
-    
-    
-  </div>
-
-  <div class="entry">
+  <div class="entry creative-post__entry">
     {{ content }}
   </div>
 
-  <div class="pagination">
-    {% if page.previous.url %}
-      <span class="prev" >
-          <a href="{{ site.url }}{{ site.baseurl }}{{ page.previous.url }}">
-            &#xE000; {{ page.previous.title }}
-          </a>
-      </span>
-    {% endif %}
-    {% if page.next.url %}
-      <span class="next" >
-          <a href="{{ site.url }}{{ site.baseurl }}{{ page.next.url }}">
-            {{ page.next.title }} &#xE001;
-          </a>
-      </span>
-    {% endif %}
-  </div>
+  {% if page.previous.url or page.next.url %}
+  <nav class="creative-post__pagination" aria-label="게시글 이동">
+    <div class="creative-post__pager creative-post__pager--prev">
+      {% if page.previous.url %}
+      <span class="creative-post__pager-label">← PREVIOUS</span>
+      <a class="creative-post__pager-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+      {% endif %}
+    </div>
+    <div class="creative-post__pager creative-post__pager--next">
+      {% if page.next.url %}
+      <span class="creative-post__pager-label">NEXT →</span>
+      <a class="creative-post__pager-link" href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+      {% endif %}
+    </div>
+  </nav>
+  {% endif %}
 
-  {% include disqus.html %}
+  <div class="creative-post__comments">
+    {% include disqus.html %}
+  </div>
 </article>
+
