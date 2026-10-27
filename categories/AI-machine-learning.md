@@ -1,5 +1,5 @@
 ---
 layout: category
-title: AI_ML_DL
+title: "AI & ML"
 ---
 
