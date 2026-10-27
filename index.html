@@ -3,131 +3,115 @@ layout: default
 ---
 
 <style>
-/* 홈페이지 전용 스타일: 공통 색상과 헤더는 style.scss에서 관리 */
-.site-category { margin: 1.6rem 0 0; }
-.site-category ul { list-style:none; margin:0; padding:0; }
-.site-category li { margin:0; padding:.24rem 0; }
-.site-category .category-link {
-  display:inline-flex; align-items:baseline; gap:.48rem; padding:.08rem 0;
-  background:none; border:0; border-radius:0; box-shadow:none;
-  color:#302e3c; text-decoration:none; line-height:1.5;
-  transition:color .2s ease, transform .2s ease;
-}
-.site-category .category-link:hover,
-.site-category .category-link:focus-visible {
-  color:#7965bd; transform:translateX(5px); text-decoration:none;
-}
-.site-category .category-link.active { color:#7965bd; font-weight:700; }
-.site-category .category-count { color:#91899e; font-size:.8em; font-weight:400; }
-.site-category #random-post-btn {
-  display:inline-block; margin:1.2rem 0 0; padding:.15rem 0;
-  background:none; border:0; border-radius:0; box-shadow:none;
-  color:#7965bd; font:inherit; cursor:pointer; text-align:left;
-  transition:letter-spacing .2s ease, color .2s ease;
-}
-.site-category #random-post-btn:hover { color:#554198; letter-spacing:.02em; }
-.home-latest { margin-top:4rem; }
-.home-latest__heading {
-  margin:0 0 1.45rem; color:#302e3c; font-size:1.55rem;
-  font-weight:700; letter-spacing:-.045em;
-}
-/* 박스형 카드를 만들지 않고, 글 자체가 콘텐츠가 되도록 */
-.home-latest__grid {
-  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:2.1rem 2.6rem; list-style:none; margin:0; padding:0;
-}
-.home-latest__grid > li { min-width:0; margin:0; }
-.home-latest__grid > li:nth-child(even) { padding-top:2.2rem; }
-.home-latest__card {
-  position:relative; display:flex; flex-direction:column; align-items:flex-start;
-  gap:.65rem; min-height:11rem; padding:1.05rem .2rem 1.15rem;
-  background:transparent; border:0; border-top:1px solid #e8e3f0;
-  border-radius:0; box-shadow:none; color:#302e3c; text-decoration:none;
-  transition:border-color .2s ease, transform .2s ease;
-}
-.home-latest__card:hover, .home-latest__card:focus-visible {
-  border-top-color:#a69bd4; transform:translateY(-3px); text-decoration:none;
-}
-.home-latest__title {
-  margin:0; font-size:1.15rem; line-height:1.48; font-weight:650;
-  letter-spacing:-.03em; color:#302e3c; overflow-wrap:anywhere;
-}
-.home-latest__date { order:-1; color:#79758b; font-size:.78rem; letter-spacing:.035em; }
-.home-latest__excerpt {
-  margin:0; color:#716b7c; font-size:.9rem; line-height:1.7;
-  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3;
-  overflow:hidden; overflow-wrap:anywhere;
-}
-.home-latest__more {
-  margin-top:auto; padding-top:.45rem; color:#7965bd;
-  font-size:.86rem; font-weight:600;
-}
-.home-latest__card:hover .home-latest__more { color:#554198; }
-@media(max-width:580px) {
-  .home-latest { margin-top:3rem; }
-  .home-latest__grid { grid-template-columns:1fr; gap:1.05rem; }
-  .home-latest__grid > li:nth-child(even) { padding-top:0; }
-  .home-latest__card { min-height:0; }
-}
-@media(prefers-reduced-motion:reduce) {
-  .site-category .category-link, .site-category #random-post-btn,
-  .home-latest__card { transition:none; }
-  .site-category .category-link:hover, .home-latest__card:hover { transform:none; }
-}
+/* Personal brand homepage — scoped styles, no theme files changed */
+.brand-home { max-width: 720px; margin: 0 auto; padding: 14px 0 48px; color: #302e3c; }
+.brand-home a { color: inherit; text-decoration: none; }
+.brand-home a:hover, .brand-home a:focus-visible { color: #7965bd; }
+.brand-home__hero { padding: 32px 0 42px; }
+.brand-home__eyebrow { display: block; margin-bottom: 17px; color: #7965bd; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.brand-home__hero h1 { margin: 0 0 20px; font-size: clamp(29px, 5.5vw, 45px); line-height: 1.35; letter-spacing: -.045em; font-weight: 750; }
+.brand-home__hero p { margin: 0; color: #625d70; font-size: 16px; line-height: 1.9; }
+.brand-home__hero-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
+.brand-home__hero-links a { display: inline-block; padding: 10px 16px; border: 1px solid #e8e3f0; border-radius: 10px; background: #faf9ff; color: #6653a8; font-size: 14px; font-weight: 650; }
+.brand-home__section { padding: 28px 0 33px; border-top: 1px solid #e8e3f0; }
+.brand-home__section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 19px; }
+.brand-home__section h2 { margin: 0; font-size: 21px; font-weight: 750; letter-spacing: -.035em; }
+.brand-home__hint { color: #8a8494; font-size: 13px; }
+.brand-home__activities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.brand-home__activity { display: block; min-height: 108px; padding: 19px; border: 1px solid #e8e3f0; border-radius: 14px; background: #faf9ff; transition: border-color .2s ease, transform .2s ease; }
+.brand-home__activity:hover { border-color: #b7a8dc; transform: translateY(-2px); }
+.brand-home__activity strong { display: block; margin-bottom: 9px; font-size: 16px; }
+.brand-home__activity span { display: block; color: #716c7d; font-size: 13px; line-height: 1.65; }
+.brand-home__post-list { margin: 0; padding: 0; list-style: none; }
+.brand-home__post-list li { padding: 16px 0; border-bottom: 1px solid #eeeaf4; }
+.brand-home__post-list li:first-child { padding-top: 0; }
+.brand-home__post-list a { display: block; font-size: 16px; font-weight: 650; line-height: 1.65; overflow-wrap: anywhere; }
+.brand-home__post-meta { display: flex; flex-wrap: wrap; gap: 7px 12px; margin-top: 6px; color: #8a8494; font-size: 12px; }
+.brand-home__post-excerpt { margin: 8px 0 0; color: #716c7d; font-size: 13px; line-height: 1.7; }
+.brand-home__category-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
+.brand-home__category-list li { margin: 0; }
+.brand-home__category-list a { display: inline-block; padding: 8px 13px; border: 1px solid #e8e3f0; border-radius: 999px; background: #faf9ff; color: #6653a8; font-size: 13px; }
+.brand-home__random { margin-top: 20px; padding: 0; border: 0; background: none; color: #7965bd; font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
+.brand-home__random:hover { text-decoration: underline; }
+.brand-home__empty { color: #8a8494; font-size: 14px; line-height: 1.8; }
+@media (max-width: 520px) { .brand-home__hero { padding-top: 16px; } .brand-home__activities { grid-template-columns: 1fr; } .brand-home__activity { min-height: 0; } .brand-home__section-head { align-items: flex-start; flex-direction: column; gap: 5px; } }
+@media (prefers-reduced-motion: reduce) { .brand-home__activity { transition: none; } .brand-home__activity:hover { transform: none; } }
 </style>
 
-<div class="unified-page-content">
-{% include page-heading.html title="Categories" %}
+<main class="brand-home">
+  <header class="brand-home__hero">
+    <span class="brand-home__eyebrow">Software · Humanities · Creative Work</span>
+    <h1>기술을 탐구하고,<br>이야기와 세계를 만듭니다.</h1>
+    <p>인지니어스비전을 운영하며 개발, 디지털 인문학 연구, 콘텐츠 플랫폼과 오리지널 IP를 만들어갑니다. 그 과정에서 배우고 실험하고 생각한 것들을 기록하는 공간입니다.</p>
+    <div class="brand-home__hero-links">
+      <a href="{{ '/about/' | relative_url }}">About me</a>
+      <a href="https://worldplay.kr" target="_blank" rel="noopener noreferrer">Worldplay ↗</a>
+    </div>
+  </header>
 
-<header class="site-category">
+  <section class="brand-home__section" aria-labelledby="activities-title">
+    <div class="brand-home__section-head"><h2 id="activities-title">What I Do</h2><span class="brand-home__hint">관심사와 활동</span></div>
+    <div class="brand-home__activities">
+      {% assign dev_page = site.pages | where: 'title', 'Development' | first %}
+      {% assign dh_page = site.pages | where: 'title', 'Digital Humanitas' | first %}
+      {% assign projects_page = site.pages | where: 'title', 'Projects' | first %}
+      {% assign ip_page = site.pages | where: 'title', 'Original IP' | first %}
+      <a class="brand-home__activity" href="{% if dev_page %}{{ dev_page.url | relative_url }}{% elsif projects_page %}{{ projects_page.url | relative_url }}{% else %}{{ '/about/' | relative_url }}{% endif %}"><strong>Development</strong><span>코드, 기술 실험, 문제 해결과 개발 기록</span></a>
+      <a class="brand-home__activity" href="{% if dh_page %}{{ dh_page.url | relative_url }}{% else %}{{ '/about/' | relative_url }}{% endif %}"><strong>Digital Humanitas</strong><span>디지털 인문학과 기술·인문학의 접점</span></a>
+      <a class="brand-home__activity" href="https://worldplay.kr" target="_blank" rel="noopener noreferrer"><strong>Worldplay ↗</strong><span>콘텐츠 플랫폼의 기획, 개발과 운영</span></a>
+      <a class="brand-home__activity" href="{% if ip_page %}{{ ip_page.url | relative_url }}{% else %}{{ '/original-ip/' | relative_url }}{% endif %}"><strong>Original IP</strong><span>Blankscene과 창작 프로젝트</span></a>
+    </div>
+  </section>
 
-<header class="site-category">
-  <ul style="list-style:none;">
-
-    {% assign pages_list = site.pages %}
-    {% for node in pages_list %}
-      {% if node.title != null %}
-        {% if node.layout == "category" %}
-          <li><a class="category-link {% if page.url == node.url %} active{% endif %}"
-          href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}{% assign category_key = node.category | default: node.title %}{% assign category_posts = site.categories[category_key] %}<span class="category-count">({{ category_posts.size | default: 0 }})</span></a></li>
-        {% endif %}
+  {% assign featured_posts = site.posts | where: 'featured', true %}
+  <section class="brand-home__section" aria-labelledby="featured-title">
+    <div class="brand-home__section-head"><h2 id="featured-title">Featured Writing</h2><span class="brand-home__hint">먼저 읽어보면 좋은 글</span></div>
+    <ul class="brand-home__post-list">
+      {% if featured_posts.size > 0 %}
+        {% for post in featured_posts limit: 3 %}
+          <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div>{% if post.description %}<p class="brand-home__post-excerpt">{{ post.description | strip_html | escape }}</p>{% endif %}</li>
+        {% endfor %}
+      {% else %}
+        {% for post in site.posts limit: 3 %}
+          <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div></li>
+        {% endfor %}
       {% endif %}
-    {% endfor %}
+    </ul>
+  </section>
 
-  </ul>
+  <section class="brand-home__section" aria-labelledby="latest-title">
+    <div class="brand-home__section-head"><h2 id="latest-title">Recent Posts</h2><span class="brand-home__hint">최근 기록 8개</span></div>
+    <ul class="brand-home__post-list">
+      {% for post in site.posts limit: 8 %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><div class="brand-home__post-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>{% for category in post.categories limit: 1 %}<span>{{ category }}</span>{% endfor %}</div></li>
+      {% endfor %}
+    </ul>
+  </section>
 
-  <button id="random-post-btn" style="margin:1rem 0;">🎲 랜덤 포스트</button>
-  <script src="{{ '/random.js' | relative_url }}"></script>
-  <script>
-  document.getElementById('random-post-btn').addEventListener('click', function(){
-    var url = randomPosts[Math.floor(Math.random()*randomPosts.length)];
-    window.location.href = url;
+  <section class="brand-home__section" aria-labelledby="categories-title">
+    <div class="brand-home__section-head"><h2 id="categories-title">Explore Topics</h2><span class="brand-home__hint">주제별로 둘러보기</span></div>
+    <ul class="brand-home__category-list">
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null and node.layout == 'category' %}
+          <li><a href="{{ node.url | relative_url }}">{{ node.title | escape }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <button id="random-post-btn" class="brand-home__random" type="button">🎲 랜덤 글 읽기</button>
+  </section>
+</main>
+
+<script src="{{ '/random.js' | relative_url }}"></script>
+<script>
+(function () {
+  var button = document.getElementById('random-post-btn');
+  if (!button) return;
+  button.addEventListener('click', function () {
+    if (typeof randomPosts === 'undefined' || !Array.isArray(randomPosts) || randomPosts.length === 0) return;
+    var url = randomPosts[Math.floor(Math.random() * randomPosts.length)];
+    if (typeof url === 'string' && url.length > 0) window.location.href = url;
   });
-  </script>
-</header>
-
-<section class="home-latest" aria-labelledby="home-latest-heading">
-  <h2 id="home-latest-heading" class="home-latest__heading">Latest Posts</h2>
-  <ul class="home-latest__grid">
-    {% for post in site.posts limit:5 %}
-      <li>
-        <a class="home-latest__card" href="{{ post.url | relative_url }}">
-          <h3 class="home-latest__title">{{ post.title | escape }}</h3>
-          <time class="home-latest__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-            {{ post.date | date: '%Y.%m.%d' }}
-          </time>
-          {% assign preview = post.excerpt | markdownify | strip_html | normalize_whitespace | strip %}
-          {% if preview != '' %}
-            <p class="home-latest__excerpt">{{ preview | truncate: 150 | escape }}</p>
-          {% endif %}
-          <span class="home-latest__more">더 보기 →</span>
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-
-</div>
-</section>
-
-
+})();
+</script>
 
