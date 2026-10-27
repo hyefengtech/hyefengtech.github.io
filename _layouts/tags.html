@@ -2,7 +2,10 @@
 layout: default
 ---
 
-<h1 style="
+<h1 class="section-title" style="
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
   margin: 8px 0 32px;
   color: #302e3c;
   font-size: clamp(30px, 5vw, 46px);
@@ -11,6 +14,11 @@ layout: default
   letter-spacing: -.045em;
 ">
   Tags
+  <span aria-hidden="true" style="
+    flex: 1;
+    height: 1px;
+    background: #e8e3f0;
+  "></span>
 </h1>
 
 {% assign tags = site.tags | sort %}
