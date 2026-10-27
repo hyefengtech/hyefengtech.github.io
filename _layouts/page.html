@@ -81,10 +81,7 @@ layout: default
 </style>
 
 <article class="page">
-  <header class="page__header">
-    <h1 class="page__title">{{ page.title | escape }}</h1>
-    <div class="page__rule" aria-hidden="true"></div>
-  </header>
+{% include page-heading.html title=page.title %}
 
   <div class="entry">
     {{ content }}
