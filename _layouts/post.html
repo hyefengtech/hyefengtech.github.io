@@ -1,29 +1,21 @@
+
 ---
 layout: default
 ---
 
 <style>
-  /* ========================================
-     CREATIVE POST — BASE
-  ======================================== */
-
   .creative-post {
     --post-ink: #302e3c;
     --post-muted: #827c91;
     --post-accent: #7965bd;
     --post-line: #e8e3f0;
-
     color: var(--post-ink);
     padding: 12px 0 28px;
+    min-width: 0;
   }
 
-  /* ========================================
-     HEADER
-  ======================================== */
-
-  .creative-post__header {
-    margin-bottom: 44px;
-  }
+  /* HEADER */
+  .creative-post__header { margin-bottom: 44px; }
 
   .creative-post__eyebrow {
     margin: 0 0 12px;
@@ -57,6 +49,7 @@ layout: default
     font-style: normal;
   }
 
+  /* TAGS */
   .creative-post__tags {
     display: flex;
     flex-wrap: wrap;
@@ -88,20 +81,15 @@ layout: default
     border-bottom-color: currentColor;
   }
 
-  /* ========================================
-     ARTICLE CONTENT
-  ======================================== */
-
+  /* CONTENT */
   .creative-post__entry {
+    min-width: 0;
     font-size: 16px;
     line-height: 1.9;
     overflow-wrap: break-word;
-    min-width: 0;
   }
 
-  .creative-post__entry > :first-child {
-    margin-top: 0;
-  }
+  .creative-post__entry > :first-child { margin-top: 0; }
 
   .creative-post__entry h2,
   .creative-post__entry h3,
@@ -117,9 +105,7 @@ layout: default
     border-bottom: 1px solid var(--post-line);
   }
 
-  .creative-post__entry h3 {
-    margin-top: 1.7em;
-  }
+  .creative-post__entry h3 { margin-top: 1.7em; }
 
   .creative-post__entry p,
   .creative-post__entry ul,
@@ -156,10 +142,7 @@ layout: default
     border-radius: 6px;
   }
 
-  /* ========================================
-     INLINE CODE
-  ======================================== */
-
+  /* INLINE CODE */
   .creative-post__entry :not(pre) > code {
     padding: .12em .36em;
     border-radius: 4px;
@@ -169,87 +152,159 @@ layout: default
     overflow-wrap: anywhere;
   }
 
-
-/* ========================================
-   CODE BLOCKS — NO DOUBLE SCROLL
-======================================== */
-
-/* Rouge 코드 블록 래퍼 */
-.creative-post__entry .highlighter-rouge,
-.creative-post__entry .highlight {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  margin: 1.5rem 0;
-  padding: 0;
-  overflow: visible;
-  border: 0;
-  background: transparent;
-}
-
-/* 실제 코드 블록 디자인 */
-.creative-post__entry pre,
-.creative-post__entry .highlight pre {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-
-  margin: 1.5rem 0;
-  padding: 18px 20px;
-
-  background: #f5f2fc;
-  border: 1px solid #e8e3f0;
-  border-radius: 10px;
-
-  color: #302e3c;
-  font-size: 13px;
-  line-height: 1.75;
-  font-family: Consolas, Monaco, monospace;
-  tab-size: 2;
-
-  /* 가로 스크롤 제거 + 긴 코드 줄바꿈 */
-  overflow-x: hidden;
-  overflow-y: visible;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  word-break: normal;
-}
-
-/* Rouge 내부 여백 중복 방지 */
-.creative-post__entry .highlight pre {
-  margin: 0;
-}
-
-/* 코드 내부에도 줄바꿈 적용 */
-.creative-post__entry pre code,
-.creative-post__entry .highlight code {
-  padding: 0;
-  border: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  word-break: normal;
-}
-
-/* 모바일 */
-@media (max-width: 540px) {
-  .creative-post__entry pre,
-  .creative-post__entry .highlight pre {
-    padding: 14px 16px;
-    font-size: 12px;
-    line-height: 1.7;
+  /* CODE BLOCKS */
+  .creative-post__entry .highlighter-rouge,
+  .creative-post__entry div.highlight {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 1.5rem 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
   }
-}
-  /* ========================================
-     TABLES
-  ======================================== */
 
+  .creative-post__entry pre,
+  .creative-post__entry .highlight pre,
+  .creative-post__entry pre.highlight {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 1.5rem 0;
+    padding: 18px 20px;
+
+    background: #f5f2fc;
+    border: 1px solid var(--post-line);
+    border-radius: 10px;
+    box-shadow: none;
+
+    color: var(--post-ink);
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    tab-size: 2;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    overflow: visible;
+  }
+
+  .creative-post__entry .highlight pre,
+  .creative-post__entry pre.highlight {
+    margin: 0;
+  }
+
+  .creative-post__entry pre code,
+  .creative-post__entry .highlight code {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  /* CODE TOOLBAR */
+  .creative-post__code-box {
+    position: relative;
+    max-width: 100%;
+    min-width: 0;
+    margin: 1.5rem 0;
+  }
+
+  .creative-post__code-box > .highlighter-rouge,
+  .creative-post__code-box > div.highlight,
+  .creative-post__code-box > pre {
+    margin: 0;
+  }
+
+  .creative-post__code-box pre {
+    margin: 0;
+  }
+
+  .creative-post__code-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f5f2fc;
+    border: 1px solid var(--post-line);
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .creative-post__code-box pre {
+    border-radius: 0 0 10px 10px;
+  }
+
+  .creative-post__code-button {
+    appearance: none;
+    border: 1px solid #ded6f0;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background: #fff;
+    color: #6752a1;
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background .2s ease;
+  }
+
+  .creative-post__code-button:hover {
+    background: #ece6fa;
+  }
+
+  .creative-post__code-button:focus-visible {
+    outline: 2px solid var(--post-accent);
+    outline-offset: 2px;
+  }
+
+  /* LONG CODE COLLAPSE */
+  .creative-post__code-box.is-collapsed pre {
+    max-height: 370px;
+    overflow: hidden;
+  }
+
+  .creative-post__code-expand {
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--post-line);
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+    background: #f0ecf8;
+    color: #6752a1;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .creative-post__code-expand:hover {
+    background: #e9e2f8;
+  }
+
+  .creative-post__code-expand:focus-visible {
+    outline: 2px solid var(--post-accent);
+    outline-offset: 2px;
+  }
+
+  .creative-post__code-box.has-expand pre {
+    border-radius: 0;
+  }
+
+  /* TABLES */
   .creative-post__entry table {
     display: block;
     max-width: 100%;
@@ -270,10 +325,7 @@ layout: default
     background: #f6f3fc;
   }
 
-  /* ========================================
-     PREVIOUS / NEXT POST
-  ======================================== */
-
+  /* PREVIOUS / NEXT */
   .creative-post__pagination {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -283,13 +335,8 @@ layout: default
     border-top: 1px solid var(--post-line);
   }
 
-  .creative-post__pager {
-    min-width: 0;
-  }
-
-  .creative-post__pager--next {
-    text-align: right;
-  }
+  .creative-post__pager { min-width: 0; }
+  .creative-post__pager--next { text-align: right; }
 
   .creative-post__pager-label {
     display: block;
@@ -311,39 +358,31 @@ layout: default
     transition: color .18s ease;
   }
 
-  .creative-post__pager-link:hover {
-    color: var(--post-accent);
-  }
+  .creative-post__pager-link:hover { color: var(--post-accent); }
 
-  /* ========================================
-     COMMENTS
-  ======================================== */
+  /* COMMENTS */
+  .creative-post__comments { margin-top: 48px; }
 
-  .creative-post__comments {
-    margin-top: 48px;
-  }
-
-  /* ========================================
-     MOBILE
-  ======================================== */
-
+  /* MOBILE */
   @media (max-width: 540px) {
-    .creative-post {
-      padding-top: 4px;
-    }
-
-    .creative-post__header {
-      margin-bottom: 32px;
-    }
+    .creative-post { padding-top: 4px; }
+    .creative-post__header { margin-bottom: 32px; }
 
     .creative-post__entry {
       font-size: 15px;
       line-height: 1.85;
     }
 
-    .creative-post__entry pre {
+    .creative-post__entry pre,
+    .creative-post__entry .highlight pre,
+    .creative-post__entry pre.highlight {
       padding: 14px 16px;
       font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .creative-post__code-box.is-collapsed pre {
+      max-height: 310px;
     }
 
     .creative-post__pagination {
@@ -351,28 +390,16 @@ layout: default
       margin-top: 50px;
     }
 
-    .creative-post__pager-link {
-      font-size: 13px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .creative-post__tag,
-    .creative-post__pager-link {
-      transition: none;
-    }
+    .creative-post__pager-link { font-size: 13px; }
   }
 </style>
 
 <article class="post creative-post">
-
   <header class="creative-post__header">
     <p class="creative-post__eyebrow">Notes / Devlog</p>
-
     <h1 class="creative-post__title">{{ page.title | escape }}</h1>
 
     <div class="creative-post__meta">
-
       <time
         class="creative-post__date"
         datetime="{{ page.date | date: '%Y-%m-%d' }}"
@@ -392,7 +419,6 @@ layout: default
         {% endfor %}
       </ul>
       {% endif %}
-
     </div>
   </header>
 
@@ -402,7 +428,6 @@ layout: default
 
   {% if page.previous.url or page.next.url %}
   <nav class="creative-post__pagination" aria-label="게시글 이동">
-
     <div class="creative-post__pager creative-post__pager--prev">
       {% if page.previous.url %}
       <span class="creative-post__pager-label">← PREVIOUS</span>
@@ -422,12 +447,131 @@ layout: default
       >{{ page.next.title | escape }}</a>
       {% endif %}
     </div>
-
   </nav>
   {% endif %}
 
   <div class="creative-post__comments">
     {% include disqus.html %}
   </div>
-
 </article>
+
+<script>
+(function () {
+  'use strict';
+
+  var entry = document.querySelector('.creative-post__entry');
+  if (!entry) return;
+
+  var blocks = entry.querySelectorAll(
+    '.highlighter-rouge, div.highlight, pre'
+  );
+
+  var processed = new WeakSet();
+
+  blocks.forEach(function (element) {
+    if (element.closest('.creative-post__code-box')) return;
+
+    var root = element;
+
+    if (element.matches('pre')) {
+      var outer = element.closest('.highlighter-rouge');
+      if (outer) return;
+
+      var highlight = element.closest('div.highlight');
+      if (highlight) return;
+    }
+
+    if (element.matches('div.highlight')) {
+      if (element.closest('.highlighter-rouge')) return;
+    }
+
+    if (processed.has(root)) return;
+
+    var pre = root.matches('pre')
+      ? root
+      : root.querySelector('pre');
+
+    if (!pre) return;
+
+    processed.add(root);
+
+    var code = pre.querySelector('code');
+    var codeText = code ? code.textContent : pre.textContent;
+    var lineCount = codeText.replace(/\n$/, '').split('\n').length;
+
+    var box = document.createElement('div');
+    box.className = 'creative-post__code-box';
+
+    root.parentNode.insertBefore(box, root);
+    box.appendChild(root);
+
+    var toolbar = document.createElement('div');
+    toolbar.className = 'creative-post__code-toolbar';
+
+    var copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.className = 'creative-post__code-button';
+    copyButton.textContent = '코드 복사';
+
+    copyButton.addEventListener('click', function () {
+      function showResult(success) {
+        copyButton.textContent = success ? '복사 완료' : '복사 실패';
+        setTimeout(function () {
+          copyButton.textContent = '코드 복사';
+        }, 1800);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(codeText)
+          .then(function () { showResult(true); })
+          .catch(function () { showResult(false); });
+      } else {
+        var textarea = document.createElement('textarea');
+        textarea.value = codeText;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        var success = false;
+        try {
+          success = document.execCommand('copy');
+        } catch (error) {
+          success = false;
+        }
+
+        textarea.remove();
+        showResult(success);
+      }
+    });
+
+    toolbar.appendChild(copyButton);
+    box.insertBefore(toolbar, root);
+
+    if (lineCount > 40) {
+      box.classList.add('has-expand', 'is-collapsed');
+
+      var expandButton = document.createElement('button');
+      expandButton.type = 'button';
+      expandButton.className = 'creative-post__code-expand';
+      expandButton.textContent = '전체 코드 보기 (' + lineCount + '줄)';
+      expandButton.setAttribute('aria-expanded', 'false');
+
+      expandButton.addEventListener('click', function () {
+        var collapsed = box.classList.toggle('is-collapsed');
+
+        expandButton.setAttribute(
+          'aria-expanded',
+          String(!collapsed)
+        );
+
+        expandButton.textContent = collapsed
+          ? '전체 코드 보기 (' + lineCount + '줄)'
+          : '코드 접기';
+      });
+
+      box.appendChild(expandButton);
+    }
+  });
+})();
+</script>
