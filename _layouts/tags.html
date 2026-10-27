@@ -1,15 +1,165 @@
+
 ---
 layout: default
 ---
 
-{% assign tags = site.tags | sort %}
-{% for tag in tags %}
-<h2>{{ tag[0] }}</h2>
-<ul>
-  {% for post in tag[1] %}
-  <li>
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-  </li>
+<style>
+/* Tags page */
+
+.tags-page {
+  max-width: 720px;
+  padding: 8px 0 30px;
+}
+
+.tags-page__header {
+  margin-bottom: 40px;
+}
+
+.tags-page__eyebrow {
+  display: inline-block;
+  color: #7965bd;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .11em;
+}
+
+.tags-page__title {
+  margin: 10px 0 8px;
+  color: #302e3c;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.045em;
+}
+
+.tags-page__description {
+  margin: 0;
+  color: #858092;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.tags-page__group {
+  padding: 22px 0;
+  border-top: 1px solid #e8e3f0;
+}
+
+.tags-page__group-title {
+  margin: 0 0 14px;
+  color: #7965bd;
+  font-size: 19px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.tags-page__count {
+  margin-left: 8px;
+  color: #91899e;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.tags-page__posts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags-page__posts li {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.tags-page__post-link {
+  display: inline;
+  color: #302e3c;
+  font-size: 16px;
+  line-height: 1.6;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color .2s ease;
+}
+
+.tags-page__post-link:hover,
+.tags-page__post-link:focus-visible {
+  color: #7965bd;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.tags-page__empty {
+  color: #858092;
+  font-size: 15px;
+}
+
+@media (max-width: 580px) {
+  .tags-page__header {
+    margin-bottom: 28px;
+  }
+
+  .tags-page__group {
+    padding: 18px 0;
+  }
+
+  .tags-page__group-title {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tags-page__post-link {
+    transition: none;
+  }
+}
+</style>
+
+<section class="tags-page" aria-labelledby="tags-page-title">
+
+  <header class="tags-page__header">
+    <span class="tags-page__eyebrow">EXPLORE BY TAG</span>
+
+    <h1 id="tags-page-title" class="tags-page__title">
+      {{ page.title | default: "Tags" | escape }}
+    </h1>
+
+    <p class="tags-page__description">
+      키워드를 따라 기록을 탐색해 보세요.
+    </p>
+  </header>
+
+  {% assign tags = site.tags | sort %}
+
+  {% for tag in tags %}
+    <section class="tags-page__group" id="{{ tag[0] | slugify }}">
+
+      <h2 class="tags-page__group-title">
+        {{ tag[0] | escape }}
+        <span class="tags-page__count">
+          ({{ tag[1].size }})
+        </span>
+      </h2>
+
+      <ul class="tags-page__posts">
+        {% for post in tag[1] %}
+          <li>
+            <a
+              class="tags-page__post-link"
+              href="{{ post.url | relative_url }}"
+            >
+              {{ post.title | escape }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+    </section>
   {% endfor %}
-</ul>
-{% endfor %}
+
+  {% if tags.size == 0 %}
+    <p class="tags-page__empty">
+      아직 등록된 태그가 없어요.
+    </p>
+  {% endif %}
+
+</section>
