@@ -1,3 +1,4 @@
+
 ---
 layout: default
 ---
@@ -6,39 +7,143 @@ layout: default
 {% assign category_posts = site.categories[category] %}
 
 <style>
-/* Category page — soft experimental, lightweight text layout */
-.category-page { max-width: 720px; padding: 8px 0 30px; }
-.category-page__header { margin-bottom: 36px; }
-.category-page__eyebrow { display: inline-block; color: #7965bd; font-size: 12px; font-weight: 650; letter-spacing: .11em; }
-.category-page__title { margin: 10px 0 8px; color: #302e3c; font-size: clamp(30px, 5vw, 46px); line-height: 1.25; letter-spacing: -.045em; overflow-wrap: anywhere; }
-.category-page__count { margin: 0; color: #858092; font-size: 14px; }
-.category-page__posts { margin: 0; padding: 0; list-style: none; }
-.category-page__item { padding: 18px 0; border-top: 1px solid #e8e3f0; }
-.category-page__link { display: inline; color: #302e3c; font-size: 18px; font-weight: 550; line-height: 1.5; text-decoration: none; transition: color .18s ease; overflow-wrap: anywhere; }
-.category-page__link:hover, .category-page__link:focus-visible { color: #7965bd; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-.category-page__date { display: block; margin-top: 5px; color: #858092; font-size: 13px; }
-.category-page__empty { color: #858092; font-size: 15px; }
-@media (max-width: 580px) { .category-page__header { margin-bottom: 26px; } .category-page__item { padding: 15px 0; } .category-page__link { font-size: 17px; } }
-@media (prefers-reduced-motion: reduce) { .category-page__link { transition: none; } }
+/* Category page — soft experimental */
+
+.category-page {
+  max-width: 720px;
+  padding: 8px 0 30px;
+}
+
+.category-page__header {
+  margin-bottom: 36px;
+}
+
+.category-page__eyebrow {
+  display: inline-block;
+  color: #7965bd;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .11em;
+}
+
+.category-page__title {
+  margin: 10px 0 8px;
+  color: #302e3c;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+
+.category-page__count {
+  margin: 0;
+  color: #858092;
+  font-size: 14px;
+}
+
+.category-page__posts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category-page__item {
+  padding: 18px 0;
+  border-top: 1px solid #e8e3f0;
+}
+
+.category-page__link {
+  display: inline;
+  color: #302e3c;
+  font-size: 18px;
+  font-weight: 550;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color .18s ease;
+  overflow-wrap: anywhere;
+}
+
+.category-page__link:hover,
+.category-page__link:focus-visible {
+  color: #7965bd;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.category-page__date {
+  display: block;
+  margin-top: 5px;
+  color: #858092;
+  font-size: 13px;
+}
+
+.category-page__empty {
+  color: #858092;
+  font-size: 15px;
+}
+
+@media (max-width: 580px) {
+  .category-page__header {
+    margin-bottom: 26px;
+  }
+
+  .category-page__item {
+    padding: 15px 0;
+  }
+
+  .category-page__link {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-page__link {
+    transition: none;
+  }
+}
 </style>
 
 <section class="category-page" aria-labelledby="category-title">
+
   <header class="category-page__header">
     <span class="category-page__eyebrow">CATEGORY</span>
-    <h1 id="category-title" class="category-page__title">{{ page.title | escape }}</h1>
-    <p class="category-page__count">{{ category_posts.size }}개의 기록</p>
+
+    <h1 id="category-title" class="category-page__title">
+      {{ category | default: "Category" | escape }}
+    </h1>
+
+    <p class="category-page__count">
+      {{ category_posts.size }}개의 기록
+    </p>
   </header>
 
   {% if category_posts.size > 0 %}
     <ul class="category-page__posts">
       {% for post in category_posts %}
         <li class="category-page__item">
-          <a class="category-page__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          <time class="category-page__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+          <a
+            class="category-page__link"
+            href="{{ post.url | relative_url }}"
+          >
+            {{ post.title | escape }}
+          </a>
+
+          <time
+            class="category-page__date"
+            datetime="{{ post.date | date: '%Y-%m-%d' }}"
+          >
+            {{ post.date | date: '%Y.%m.%d' }}
+          </time>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p class="category-page__empty">아직 이 카테고리에 등록된 글이 없어요.</p>
+    <p class="category-page__empty">
+      아직 이 카테고리에 등록된 글이 없어요.
+    </p>
   {% endif %}
+
 </section>
+
