@@ -169,71 +169,83 @@ layout: default
     overflow-wrap: anywhere;
   }
 
-  /* ========================================
-     CODE BLOCKS
-  ======================================== */
 
+/* ========================================
+   CODE BLOCKS — NO DOUBLE SCROLL
+======================================== */
+
+/* Rouge 코드 블록 래퍼 */
+.creative-post__entry .highlighter-rouge,
+.creative-post__entry .highlight {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin: 1.5rem 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+/* 실제 코드 블록 디자인 */
+.creative-post__entry pre,
+.creative-post__entry .highlight pre {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  margin: 1.5rem 0;
+  padding: 18px 20px;
+
+  background: #f5f2fc;
+  border: 1px solid #e8e3f0;
+  border-radius: 10px;
+
+  color: #302e3c;
+  font-size: 13px;
+  line-height: 1.75;
+  font-family: Consolas, Monaco, monospace;
+  tab-size: 2;
+
+  /* 가로 스크롤 제거 + 긴 코드 줄바꿈 */
+  overflow-x: hidden;
+  overflow-y: visible;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Rouge 내부 여백 중복 방지 */
+.creative-post__entry .highlight pre {
+  margin: 0;
+}
+
+/* 코드 내부에도 줄바꿈 적용 */
+.creative-post__entry pre code,
+.creative-post__entry .highlight code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* 모바일 */
+@media (max-width: 540px) {
   .creative-post__entry pre,
-  .creative-post__entry .highlight {
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    border-radius: 10px;
-  }
-
-  .creative-post__entry pre {
-    margin: 1.5rem 0;
-    padding: 18px 20px;
-    overflow-x: auto;
-    background: #f5f2fc;
-    border: 1px solid #e8e3f0;
-    color: #302e3c;
-    font-size: 13px;
+  .creative-post__entry .highlight pre {
+    padding: 14px 16px;
+    font-size: 12px;
     line-height: 1.7;
-    tab-size: 2;
-    white-space: pre;
-    overflow-wrap: normal;
-    word-break: normal;
   }
-
-  .creative-post__entry pre code {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font-family: Consolas, Monaco, monospace;
-    font-size: inherit;
-    line-height: inherit;
-    white-space: inherit;
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-
-  /* Jekyll / Rouge syntax highlighting */
-
-  .creative-post__entry .highlight {
-    margin: 1.5rem 0;
-    overflow-x: auto;
-    background: #f5f2fc;
-    border: 1px solid #e8e3f0;
-  }
-
-  .creative-post__entry .highlight pre {
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-
-  /* Prevent highlighted code from wrapping */
-
-  .creative-post__entry .highlight code,
-  .creative-post__entry .highlight pre {
-    white-space: pre;
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-
+}
   /* ========================================
      TABLES
   ======================================== */
