@@ -5,7 +5,7 @@ description: Software Artist, Fullstack Developer
 avatar: "./images/avatar.png"
 
 footer-links:
-  github: "hyefengtech"   # 아이콘은 username만으로도 충분
+  github: ""   # 아이콘은 username만으로도 충분
   rss: true
 
 disqus:
