@@ -29,7 +29,7 @@ permalink: /about/
 </style>
 
 <div class="about-creative">
-  <p class="eyebrow">안녕하세요 혜풍입니다</p>
+  <p class="eyebrow">안녕하세요 에클레어입니다</p>
   <h1 class="intro">코드를 쓰고<br>세계를 만들고<br><em>그 사이를 탐색합니다</em></h1>
   <p class="lead">소프트웨어 아티스트이자 풀스택 개발자입니다. 기술을 기능을 구현하는 수단이자 새로운 경험을 표현하는 재료로 바라봅니다. 인터랙티브 콘텐츠를 만들고 개발하며 떠오른 생각과 실험을 이곳에 기록합니다.</p>
 
@@ -55,7 +55,7 @@ permalink: /about/
   <section aria-labelledby="about-contact">
     <h2 id="about-contact" class="section-heading">Find me elsewhere</h2>
     <ul class="contact-list">
-      <li><a href="https://github.com/hyefengtech" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      <!-- <li><a href="https://github.com/hyefengtech" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li> -->
       <li><a href="https://maily.so/playableip" target="_blank" rel="noopener noreferrer">세계관을 팝니다 뉴스레터 ↗</a></li>
     </ul>
     <!-- 실제 이메일 주소를 입력한 뒤 아래 주석을 해제하세요.
