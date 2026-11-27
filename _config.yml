@@ -3,7 +3,7 @@ name: "인지니어스 기술블로그"
 title: "인지니어스 기술블로그"
 tagline: "상상력을 기술로, 이야기를 경험으로"
 author: "Eclair"
-description: "인문과 기술, 상상력이 만나는 곳. 월드플레이와 BLANKSCENE을 만들어가는 인지니어스의 기술블로그입니다. \n 콘텐츠와 IP의 새로운 가능성을 탐구하며, 기술적 고민과 실험, 개발 경험을 공유합니다."
+description: "인문과 기술, 상상력이 만나는 곳. 월드플레이와 BLANKSCENE을 만들어가는 인지니어스의 기술블로그입니다. 콘텐츠와 IP의 새로운 가능성을 탐구하며, 기술적 고민과 실험, 개발 경험을 공유합니다."
 avatar: "/images/avatar.png"
 locale: ko_KR
 
